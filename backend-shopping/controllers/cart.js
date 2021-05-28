@@ -1,9 +1,9 @@
 const fs = require('fs');
 const { CART_DATA_FILE } = require('../config/json-file')
 
-const index = async (req, res) => {
+const index =  (req, res) => {
     fs.readFile(CART_DATA_FILE, (err, data) => {
-        const cart = await JSON.parse(data)
+        const cart = JSON.parse(data)
         res.setHeader('Cache-Control', 'no-cache');
         res.json(cart);
     })
