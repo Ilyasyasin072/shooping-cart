@@ -1,30 +1,32 @@
 <template>
-   <div>
-        <h1>{{ msg }}</h1>
-        <ul v-for="item in product" :key="item.id">
-            <li>asd
-                {{ item.title }}
-            </li>
-        </ul>
-   </div>
+  <div class="container is-fluid">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent" v-for="item in product" :key="item.id">
+      <ProductListItem :product="item"/>
+      </div>
+    </div>
+  </div>
 </template>
 
-
 <script>
-import { mapGetters} from 'vuex';
-
+import { mapGetters } from "vuex";
+import Product_List_Item from './product_list';
 export default {
-    data(){
-        return {
-            msg: 'product'
-        }
-    },
+  data() {
+    return {
+      msg: "product",
+    };
+  },
 
-   computed: mapGetters({
-       product: 'productGet'
-   }),
-    mounted() {
-        this.$store.dispatch('getProduct');
-    }
-}
+  components: {
+      ProductListItem: Product_List_Item
+  },
+
+  computed: mapGetters({
+    product: "productGet",
+  }),
+  mounted() {
+    this.$store.dispatch("getProduct");
+  },
+};
 </script>

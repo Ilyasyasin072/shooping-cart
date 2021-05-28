@@ -1,4 +1,4 @@
 export const baseUri = {
-    uri:  'http://localhost:4001/api/'
+    uri:  'http://localhost:4001/api/v1/'
   }
   
