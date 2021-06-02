@@ -5,7 +5,7 @@
           <h4>{{ product.title }}</h4>
           <a
             class="button is-rounded is-pulled-left"
-            @click="addCartItem(product)"
+            @click="addCart(product)"
           >
             <strong>Add to Cart</strong>
           </a>
@@ -29,9 +29,12 @@
     </div>
 </template>
 <script>
-// import {mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
   name: "ProductListItem",
   props: ["product"],
+  methods: {
+    ...mapActions(['addCart'])
+  }
 };
 </script>

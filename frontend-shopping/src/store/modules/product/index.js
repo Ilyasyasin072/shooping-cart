@@ -5,7 +5,10 @@ const state = {
 }
 
 const getters = {
-    productGet : (state) => state.product
+    productGet : (state) => state.product,
+    productGetId: (state) => (id) => {
+        return state.product.find(product=> product.id === id)
+    }
 }
 
 
