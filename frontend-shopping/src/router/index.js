@@ -9,7 +9,7 @@ const routes = [
     component: Home
   },{
     path: '/product',
-    name: 'Product',
+    sudoname: 'Product',
     component: Product
   },{
     path: '/cart',
