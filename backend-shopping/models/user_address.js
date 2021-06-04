@@ -1,84 +1,69 @@
-const mongoose = require('mongoose')
+const { Schema, model } = require('../config/connection');
 
-const { Schema, model } = mongoose;
+const SchemaUserAddress = new Schema({
 
-const bcrypt = require('bcrypt');
-
-
-const UserSchema = new Schema({
-    username: {
+    user_id : Schema.ObjectId,
+    address_line1: {
         type: String,
         required: true,
-        // unique   : true,
-        validate: {
+        validated: {
             validator: String,
             message: '{VALUE} is not an integer value'
         }
     },
-    email: {
+    address_line2: {
         type: String,
         required: true,
-        // unique   : true,
-        validate: {
+        validated: {
             validator: String,
             message: '{VALUE} is not an integer value'
         }
     },
-    hash_password:  {
+    city: {
         type: String,
         required: true,
-        // unique   : true,
-        validate: {
+        validated: {
             validator: String,
             message: '{VALUE} is not an integer value'
         }
     },
-    first_name:  {
-        type: String,
+    postal_code: {
+        type: Number,
         required: true,
-        // unique   : true,
-        validate: {
-            validator: String,
+        validated: {
+            validator: Number.isInteger,
             message: '{VALUE} is not an integer value'
         }
     },
-    last_name:  {
+    country: {
         type: String,
         required: true,
-        // unique   : true,
-        validate: {
-            validator: String,
-            message: '{VALUE} is not an integer value'
-        }
-    },
-    email:  {
-        type: String,
-        required: true,
-        // unique   : true,
-        validate: {
+        validated: {
             validator: String,
             message: '{VALUE} is not an integer value'
         }
     },
     telephone: {
-        type: Number,
+        type: String,
         required: true,
-        // unique   : true,
-        validate: {
-            validator: Number.isInteger,
+        validated: {
+            validator: String,
             message: '{VALUE} is not an integer value'
         }
     },
-
+    mobile: {
+        type: String,
+        required: true,
+        validated: {
+            validator: String,
+            message: '{VALUE} is not an integer value'
+        }
+    }
 }, {
     timestamps: true, versionKey: false
 })
 
-UserSchema.methods.comparePassword = function(password) {
-    return bcrypt.compareSync(password, this.hash_password);
-  };
-console.log(this.hash_password)
 
-const User = model('users', UserSchema);
+const UserAddress = model('user_address', SchemaUserAddress)
 
-module.exports = User
+module.exports = UserAddress

@@ -3,7 +3,7 @@ const User = require('../models/user');
 const ApiResponser = require('../traits/ApiResponse') 
 
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 var config =require('../config/config');
 
 
@@ -22,11 +22,11 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
 
-    const hashedPassword = bcrypt.hashSync(req.body.password, 8)
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
 
     const user_form = {
         username: req.body.username,
-        password: hashedPassword,
+        hash_password: hashedPassword,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
