@@ -17,12 +17,14 @@ const authController = require('../controllers/authController');
 router.group('/v1', (router) => {
     
     router.group('/auth', (router) => {
-        router.post('/register', userController.store)
+        router.post('/register', authController.register)
         router.post('/login', authController.login)
         router.get('/profile', authController.profile)
     })
 
     router.group('/user', (router) => {
+
+        router.get('/' , userController.index)
         
         router.group('/address', (router) => {
             router.get('/', userAddressController.index)

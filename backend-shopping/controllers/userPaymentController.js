@@ -1,47 +1,94 @@
 const UserPayment = require('../models/user_payment')
+const mongoose = require('mongoose')
+const ApiResponser = require('../traits/ApiResponse')
 
 const index = async (req, res) => {
-    
-    try {
-        
-        const user_payment_ = await UserPayment.find({})
 
+    if (req.user) {
+        try {
+            let ObjectId = mongoose.Types.ObjectId;
+
+            const aggregateQuery = UserPayment.aggregate([
+                {
+                    $match: { user_id: ObjectId(req.user._id) }
+                },
+                {
+                    $lookup: {
+                        from: 'users',
+                        localField: 'user_id',
+                        foreignField: '_id', as: 'users'
+                    },
+                },
+                {
+        
+                    $unwind: "$users"
+        
+                },
+            ])
+
+
+            aggregateQuery.exec((err, result) => {
+                if (err) throw err;
+        
+                const data = new ApiResponser('GET', result, 200)
+        
+                res.status(200);
+        
+                res.json(data.data)
+            })
+
+            // const user_payment_ = await UserPayment.find({ user_id: ObjectId(req.user._id) })
+            // const data = new ApiResponser('GET', user_payment_, 200);
+
+            // res.json({
+
+            //     'result': data.data
+
+            // })
+
+        } catch (error) {
+
+            res.json(error.message)
+
+        }
+    } else {
         res.json({
-
-            'result' : user_payment_
-
+            status: 'invalid credentials'
         })
-
-    } catch (error) {
-        
-        res.json(error.message)
-
     }
-    
+
 }
 
 
 const store = async (req, res) => {
-    try {
+    if (req.user.status == 'admin') {
+        try {
+            let ObjectId = mongoose.Types.ObjectId;
 
-        const payment_form = {
-            user_id: '60b70e7ad124ad3906d15b93',
-            payment_type: 'Transfer',
-            provider: 'BCA',
-            account_no:'123234',
-            expiry_at: '20/12/2020',
+            const payment_form = {
+                user_id: ObjectId(req.user._id),
+                payment_type: 'Transfer',
+                provider: 'BCA',
+                account_no: '56469876546',
+                expiry_at: '20/12/2020',
+            }
+
+            const payment = UserPayment.create(payment_form);
+
+            res.json({
+                'status': 'success',
+                'data': payment
+            })
+
+        } catch (error) {
+
+            res.json(error.message)
         }
 
-        const payment = UserPayment.create(payment_form);
-
+    } else {
         res.json({
-            'status': 'success',
-            'data' : payment
+            status: 'invalid credentials'
         })
-        
-    } catch (error) {
-        
-        res.json(error.message)
     }
 }
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const { Schema, model } = mongoose;
+let mongooseHidden = require('mongoose-hidden')()
 
 const bcrypt = require('bcrypt');
 
@@ -28,6 +29,7 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         // unique   : true,
+        // hide: true,
         validate: {
             validator: String,
             message: '{VALUE} is not an integer value'
@@ -69,15 +71,24 @@ const UserSchema = new Schema({
             message: '{VALUE} is not an integer value'
         }
     },
+    status: {
+        type: String,
+        // required: true,
+        validate: {
+            validator: String,
+            message: '{VALUE} is not an integer value'
+        }
+    }
 
 }, {
     timestamps: true, versionKey: false
 })
 
+UserSchema.plugin(mongooseHidden)
+
 UserSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.hash_password);
   };
-console.log(this.hash_password)
 
 const User = model('users', UserSchema);
 

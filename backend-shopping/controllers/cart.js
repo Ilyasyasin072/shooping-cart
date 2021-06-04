@@ -22,7 +22,7 @@ const store = (req, res) => {
             quantity: 1
         }
 
-        console.log(cart)
+        // console.log(cart)
 
         let card_exists = false
 

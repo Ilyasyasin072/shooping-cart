@@ -2,7 +2,6 @@ const {  Schema, model } = require('../config/connection');
 
 const SchemaUserPayment = new Schema({
     user_id : Schema.ObjectId,
-    
     payment_type: {
         type: String,
         required: true,
