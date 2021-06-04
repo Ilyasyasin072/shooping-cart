@@ -37,15 +37,6 @@ const index = async (req, res) => {
                 res.json(data.data)
             })
 
-            // const user_payment_ = await UserPayment.find({ user_id: ObjectId(req.user._id) })
-            // const data = new ApiResponser('GET', user_payment_, 200);
-
-            // res.json({
-
-            //     'result': data.data
-
-            // })
-
         } catch (error) {
 
             res.json(error.message)
