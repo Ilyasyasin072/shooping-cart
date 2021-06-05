@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import Product from '../components/product/product.vue';
 import Cart from '../components/cart/cart.vue';
+import Dashboard from '../components/dashboard/dashboard.vue';
+
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Dashboard',
+    component: Dashboard
   },{
     path: '/product',
     sudoname: 'Product',
