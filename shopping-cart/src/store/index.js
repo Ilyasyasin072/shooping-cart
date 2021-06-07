@@ -17,11 +17,3 @@ const store = new Vuex.Store({
 
 
 export default store;
-
-// export default createStore({
-//   modules: {
-//     product,
-//     cart,
-//     auth,
-//   }
-// })
