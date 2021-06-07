@@ -17,9 +17,7 @@
         <router-link to="/">
           Service
         </router-link>
-      </a>
-
-      <!-- <div class="navbar-item has-dropdown is-hoverable">
+      </a> <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
         </a>
@@ -41,7 +39,7 @@
             Report an issue
           </a>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <div class="navbar-end">

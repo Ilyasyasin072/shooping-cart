@@ -1,5 +1,5 @@
 <template>
-  <div class="container is-widescreen">
+  <div class="container">
     <div style="margin-top: 20px;">
       <banner-list-view></banner-list-view>
     </div>

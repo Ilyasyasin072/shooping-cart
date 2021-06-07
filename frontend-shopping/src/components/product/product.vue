@@ -1,11 +1,13 @@
 <template>
-  <div class="tile is-ancestor">
+ <div class="container is-widescree=">
+ <div class="tile is-ancestor">
     <div class="tile is-parent" v-for="item in product" :key="item.id">
       <div class="columns is-one-quarter">
         <ProductListItem :product="item" />
       </div>
     </div>
   </div>
+ </div>
 </template>
 
 <script>

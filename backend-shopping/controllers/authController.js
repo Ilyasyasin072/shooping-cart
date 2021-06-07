@@ -9,12 +9,15 @@ const login = async (req, res) => {
         User.findOne({
             email: req.body.email
         }, ((err, user) => {
-            console.log(user)
             if (err) res.json({status: 'check password anda'});
             if (!user || !user.comparePassword(req.body.password)) {
                 return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
             }
-            return res.json({ token: jwt.sign({ email: user.email, status: user.status, _id: user._id }, config.secret) });
+            const user_data = {
+                name: user.first_name,
+                status: user.status,
+            }
+            return res.json({ user: user_data, token: jwt.sign({ email: user.email, status: user.status, _id: user._id }, config.secret) });
         }))
     } catch (error) {
         res.json(error.message)
