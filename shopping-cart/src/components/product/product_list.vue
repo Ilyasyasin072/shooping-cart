@@ -10,10 +10,6 @@
             <b-card-text>
               {{ product.product_inventories.name }}
             </b-card-text>
-
-              <v-p>
-                {{ product.product_categories.name }}
-              </v-p>
             <b-button href="#" variant="primary">Go somewhere</b-button>
           </b-card>
 </template>

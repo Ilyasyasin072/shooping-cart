@@ -8,7 +8,6 @@ const api = axios.create({
 
 function getProductApi(cb) {
     api.get('product').then((res) => {
-        console.log(res.data);
         cb(res.data.result)
     })
 }

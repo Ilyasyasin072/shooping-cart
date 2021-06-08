@@ -22,7 +22,7 @@ export default {
     return {
       options: {
         rewind: true,
-        perPage: 3,
+        perPage: 2,
         gap: "1rem",
         autoplay: true,
         pauseOnHover: false,

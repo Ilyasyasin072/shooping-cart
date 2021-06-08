@@ -27,7 +27,9 @@ export default {
     product: "productGet",
   }),
   mounted() {
-    this.$store.dispatch("getProduct");
+    setInterval(() => {
+          this.$store.dispatch("getProduct");
+    }, 1000)
   },
 };
 </script>

@@ -12,8 +12,13 @@ const api = axios.create({
 
 function auth(data,cb) {
     api.post('/auth/login', data).then((res) => {
-        console.log(res.data);
         setUserSession(res.data.token, res.data.user)
+        cb(res.data)
+    })
+}
+
+function register(data, cb) {
+    api.post('/auth/register', data).then((res) => {
         cb(res.data)
     })
 }
@@ -21,4 +26,5 @@ function auth(data,cb) {
 
 export default {
     authApi: (data, cb) => auth(data, cb),
+    registerApi : (data, cb) => register(data, cb)
 }

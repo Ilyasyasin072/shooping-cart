@@ -30,3 +30,9 @@ export function authHeader() {
         return {};
     }
 }
+
+
+export const removeSession = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('token')
+}

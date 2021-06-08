@@ -1,5 +1,6 @@
 import authApi from '../../../api/auth/login'
 
+// import { userGet } from '../../../utils/common';
 import { userGet } from '../../../utils/common';
 
 const user = userGet();
@@ -13,12 +14,19 @@ const getters = {
 }
 
 const actions = {
-    login( {commit} , { email, password }) {
+    login({ commit }, { email, password }) {
         commit('loginRequest', { email, password })
         // console.log(email, password);
-        authApi.authApi( { email: email, password: password }, (res) => {
+        authApi.authApi({ email: email, password: password }, (res) => {
             commit('loginSuccess', res);
-           })
+        })
+    },
+
+
+    register({ commit }, data) {
+        authApi.registerApi(data, (res) => {
+            commit('loginSuccess', res);
+        })
     }
 }
 
@@ -32,6 +40,9 @@ const mutations = {
         state.status = { loggedIn: true };
         state.user = user;
     },
+    registerSuccess(state, user) {
+        state.user = user;
+    }
 }
 
 export default {
