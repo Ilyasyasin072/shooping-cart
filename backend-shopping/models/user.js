@@ -53,15 +53,6 @@ const UserSchema = new Schema({
             message: '{VALUE} is not an integer value'
         }
     },
-    email:  {
-        type: String,
-        required: true,
-        // unique   : true,
-        validate: {
-            validator: String,
-            message: '{VALUE} is not an integer value'
-        }
-    },
     telephone: {
         type: Number,
         required: true,

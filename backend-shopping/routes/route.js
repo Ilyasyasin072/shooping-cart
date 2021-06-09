@@ -40,6 +40,7 @@ router.group('/v1', (router) => {
     router.group('/product', (router) => {
         router.get('/', productController.index);
         router.post('/create',  productController.store)
+        router.get('/show/:id',  productController.show)
 
         router.group('/category', (router) => {
             router.get('/', productCategory.index); 
