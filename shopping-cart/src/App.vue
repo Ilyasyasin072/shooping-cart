@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navbar-view></navbar-view>
-    <router-view></router-view>
+    <router-view :key="$route.params.slug"></router-view>
   </div>
 </template>
 

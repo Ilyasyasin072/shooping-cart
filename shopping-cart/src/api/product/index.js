@@ -12,14 +12,14 @@ function getProductApi(cb) {
     })
 }
 
-function getProductDetail(cb, data) {
-    api.get('/product', data).then((res) => {
-        cb(res.data.result)
+function getProductDetail(id, cb) {
+    api.get('/product/show/'+id).then((res) => {
+        cb(res.data.result[0])
     })
 }
 
 
 export default  {
     productApi : (cb) => getProductApi(cb),
-    productDetailApi : (data, cb) => getProductDetail(data, cb)
+    productDetailApi : (id, cb) => getProductDetail(id,cb)
 }

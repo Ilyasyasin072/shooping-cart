@@ -29,7 +29,7 @@ export default {
   mounted() {
     setInterval(() => {
           this.$store.dispatch("getProduct");
-    }, 1000)
+    }, 2000)
   },
 };
 </script>

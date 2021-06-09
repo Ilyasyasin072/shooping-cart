@@ -19,6 +19,8 @@ Vue.config.productionTip = false
 
 window.onload = function () {
   // const router = new VueRouter({ mode: 'history', router: router_, });
-  const app = new Vue(Vue.util.extend({ router, store }, App)).$mount("#app");
+  const app = new Vue(Vue.util.extend({ router,'$route' (to) {
+    if(to.currentRoute.meta.reload==true){window.location.reload()}
+}, store }, App)).$mount("#app");
   return { app };
 }
