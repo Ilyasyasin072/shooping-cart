@@ -1,6 +1,7 @@
 <template>
   <b-container class="container mt-5">
     <b-row>
+      {{ product_detail }}
       <b-col>
         <b-card
           title="Card Title"
@@ -38,7 +39,11 @@
         </b-card-group>
       </b-col>
       <b-col>
-        <b-alert show>Promo</b-alert>
+        <b-alert show v-if="product_detail.discounts">
+          <b-text>
+            Promo <b-badge variant="success">{{ product_detail.discounts.discount_percent }} %</b-badge>
+          </b-text>
+        </b-alert>
         <b-card>
           <b-card-text>
             Some quick example text to build on the card title and make up the
