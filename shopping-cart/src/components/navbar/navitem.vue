@@ -1,30 +1,37 @@
 <template>
-<b-nav>
-    <b-nav-item active>Active</b-nav-item>
-    <b-nav-item>Link</b-nav-item>
-    <b-nav-item>Another Link</b-nav-item>
-    <b-nav-item disabled>Disabled</b-nav-item>
-    <b-nav-item @click="logout" v-if="userLogin">Logout</b-nav-item>
-  </b-nav>
+  <div>
+     <b-navbar-nav v-if="userLogin">
+        <b-nav-item>Cart (0)</b-nav-item>
+        <b-nav-item @click="logout">Logout</b-nav-item>
+     </b-navbar-nav>
+     <b-navbar-nav  v-else>
+        <b-nav-item>
+        <router-link to="/login">Login</router-link>
+      </b-nav-item>
+      <b-nav-item>
+        <router-link to="/register">Register</router-link>
+      </b-nav-item>
+     </b-navbar-nav>
+  </div>
 </template>
 
 <script>
-import  {removeSession, authHeader }  from '../../utils/common'
+import { removeSession, authHeader } from "../../utils/common";
 export default {
   name: "NavbarItem",
   data() {
     return {
-      userLogin: null
-    }
+      userLogin: null,
+    };
   },
   mounted() {
-    this.userLogin = authHeader().Authorization
+    this.userLogin = authHeader().Authorization;
   },
   methods: {
     logout() {
       removeSession();
-      this.$router.go()
-    }
-  }
+      this.$router.go();
+    },
+  },
 };
 </script>

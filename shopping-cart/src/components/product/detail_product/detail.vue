@@ -44,7 +44,7 @@
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </b-card-text>
-          <b-button variant="success">Add Cart</b-button>
+          <b-button variant="success" @click="addCart">Add Cart</b-button>
         </b-card>
       </b-col>
     </b-row>
@@ -60,11 +60,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import ProductListItem from "../product_list.vue";
+import { authHeader } from '../../../utils/common'
 export default {
   name: "DetailView",
   data() {
     return {
       id: null,
+      userLogin: null
     };
   },
   components: {
@@ -96,6 +98,15 @@ export default {
       const data = this.id;
       this.getProductDetail(data);
     },
+
+    addCart:function() {
+      this.userLogin = authHeader().Authorization
+      if(this.userLogin ) {
+        console.log(this.product_detail._id) 
+      } else {
+        this.$router.push('/login')
+      }
+    }
   },
 };
 </script>

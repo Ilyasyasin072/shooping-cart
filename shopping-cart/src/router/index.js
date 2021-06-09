@@ -41,7 +41,7 @@ const router = new VueRouter({
         return { _id: route.query._id._id }
       },
       meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         reload: true,
       }
     },
@@ -49,9 +49,7 @@ const router = new VueRouter({
       name: 'dashboard',
       path: '/',
       component: Dashboard,
-      meta: {
-        requiresAuth: true
-      }
+     
     },
     // { path: '*', redirect: '/' }
   ]
