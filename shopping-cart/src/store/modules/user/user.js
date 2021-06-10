@@ -1,30 +1,25 @@
-import productApi_ from '../../../api/product/index.js';
+import userApi from '../../../api/user/user';
 
 const state = {
-    product: [],
-    product_detail: []
+    userLogin: null,
 }
 
 const getters = {
-    productGet : (state) => state.product,
-    productGetId: (state) => (id) => {
-        return state.product.find(product => product._id === id)
-    },
-    productDetail: (state) => state.product_detail,
+    getUserProfile: (state) => state.userLogin,
 }
 
 
 const actions = {
-    getProduct({ commit}) {
-        productApi_.productApi((res) => {
-            commit('PRODUCT_GET', res)
+    getUserProfileAction({ commit}, token) {
+        userApi.userProfile(token,(res) => {
+            commit('USER_PROFILE', res)
         })
     },
 }
 
 const mutations = {
-    PRODUCT_GET(state, payload) {
-        state.product = payload
+    USER_PROFILE(state, payload) {
+        state.userLogin = payload
     },
 }
 

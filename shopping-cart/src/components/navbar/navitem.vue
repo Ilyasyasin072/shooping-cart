@@ -3,8 +3,7 @@
     <b-navbar-nav v-if="userLogin">
       <b-nav-item>Cart (0)</b-nav-item>
       <b-nav-item @click="logout">Logout</b-nav-item>
-      <b-nav-item>
-        <router-link to="/user/profile">Profile</router-link>
+      <b-nav-item @click="profile">Profile
       </b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav v-else>
@@ -35,6 +34,10 @@ export default {
       removeSession();
       this.$router.go();
     },
+    
+    profile() {
+      this.$router.push({ path : '/user/profile'})
+    }
   },
 };
 </script>
