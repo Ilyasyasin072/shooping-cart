@@ -6,21 +6,38 @@ const bcrypt = require('bcrypt');
 const login = async (req, res) => {
    
     try {
+        if(req.body.password == '' || req.body.email == '') {
+            res.status(400).json({
+                message: 'Password And Email Cannot Empty'
+            })
+        }
+
         User.findOne({
             email: req.body.email
         }, ((err, user) => {
             if (err) res.json({status: 'check password anda'});
             if (!user || !user.comparePassword(req.body.password)) {
-                return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
+                return res.status(401).json({  code : "LOCAL_AUTH_FAILED", message: 'Authentication failed. Invalid user or password.' });
             }
             const user_data = {
-                name: user.first_name,
+                first: user.first_name,
+                last: user.last_name,
                 status: user.status,
             }
-            return res.json({ user: user_data, token: jwt.sign({ email: user.email, status: user.status, _id: user._id }, config.secret) });
+            return res.status(200).json({ 
+                _id: user._id,
+                roles: [{
+                    id: user._id
+                }],
+                name: user_data, 
+                token: jwt.sign({ email: user.email, status: user.status, _id: user._id }, config.secret) 
+            });
         }))
+        
     } catch (error) {
-        res.json(error.message)
+        res.status(500).json({
+            message: 'Viled'
+        })
     }
 
 }

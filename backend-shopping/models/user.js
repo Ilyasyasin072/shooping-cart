@@ -69,6 +69,10 @@ const UserSchema = new Schema({
             validator: String,
             message: '{VALUE} is not an integer value'
         }
+    },
+    registrationDate: {
+        type: Date,
+        default : Date.now
     }
 
 }, {

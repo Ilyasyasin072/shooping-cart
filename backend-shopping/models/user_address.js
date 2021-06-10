@@ -27,7 +27,7 @@ const SchemaUserAddress = new Schema({
             message: '{VALUE} is not an integer value'
         }
     },
-    postal_code: {
+    zipCode: {
         type: Number,
         required: true,
         validated: {
@@ -43,13 +43,21 @@ const SchemaUserAddress = new Schema({
             message: '{VALUE} is not an integer value'
         }
     },
-    telephone: {
+    // telephone: {
+    //     type: String,
+    //     required: true,
+    //     validated: {
+    //         validator: String,
+    //         message: '{VALUE} is not an integer value'
+    //     }
+    // },
+    isDefault: {
         type: String,
-        required: true,
-        validated: {
-            validator: String,
-            message: '{VALUE} is not an integer value'
-        }
+        default : false
+    },
+    isValidated: {
+        type: String,
+        default: false
     },
     mobile: {
         type: String,

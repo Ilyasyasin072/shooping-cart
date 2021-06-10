@@ -3,9 +3,9 @@ const UserAddress = require('../models/user_address')
 const ApiResponser = require('../traits/ApiResponse');
 
 
-  const index = async (req, res) => {
+const index = async (req, res) => {
 
-       if(req.user) {
+    if (req.user) {
         try {
 
             var aggregateQuery = UserAddress.aggregate([
@@ -18,55 +18,60 @@ const ApiResponser = require('../traits/ApiResponse');
                     },
                 },
                 {
-        
+
                     $unwind: "$users"
-        
+
                 }
-        
+
             ])
-        
+
             aggregateQuery.exec(function (err, result) {
                 const data = new ApiResponser('GET', result, 200)
                 res.json(data.data);
             })
-        
+
 
         } catch (error) {
 
             res.json(error.message)
 
         }
-       } else {
-           res.json({
-               'status' : 'invalid'
-           })
-       }
+    } else {
+        res.json({
+            'status': 'invalid'
+        })
     }
+}
 
-    const store =  async (req, res) => {
+const store = async (req, res) => {
 
+    if (req.user) {
         const user_address_form = {
-            user_id: req.body.user_id,
+            user_id: req.user._id,
             address_line1: req.body.address_line1,
             address_line2: req.body.address_line2,
             city: req.body.city,
-            postal_code: req.body.postal_code,
+            zipCode: req.body.zipCode,
             country: req.body.country,
-            telephone: req.body.telephone,
             mobile: req.body.mobile,
         }
 
-       try {
-        const user_address = UserAddress.create(user_address_form);
+        try {
+            const user_address = UserAddress.create(user_address_form);
 
+            res.json({
+                'method': 'POST',
+                'result': user_address
+            })
+        } catch (error) {
+            res.json(error.message)
+        }
+    } else {
         res.json({
-            'method': 'POST',
-            'result': user_address
+            message: 'invalid creadential'
         })
-       } catch (error) {
-        res.json(error.message)
-       }
     }
+}
 
 
 module.exports = {

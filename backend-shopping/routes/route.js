@@ -13,7 +13,7 @@ const userController = require('../controllers/userController');
 const userAddressController = require('../controllers/userAddressController');
 const userPaymentController = require('../controllers/userPaymentController');
 const authController = require('../controllers/authController');
-
+const phoneController  = require('../controllers/phoneController')
 router.group('/v1', (router) => {
     
     router.group('/auth', (router) => {
@@ -28,12 +28,16 @@ router.group('/v1', (router) => {
         
         router.group('/address', (router) => {
             router.get('/', userAddressController.index)
-            router.get('/create', userAddressController.store)
+            router.post('/create-address', userAddressController.store)
         })
 
         router.group('/payment', (router) => {
             router.get('/', userPaymentController.index)
-            router.get('/account', userPaymentController.store)
+            router.get('/create-account', userPaymentController.store)
+        })
+
+        router.group('/phone', (router) => {
+            router.post('/create-phone', phoneController.store )
         })
     })
 
