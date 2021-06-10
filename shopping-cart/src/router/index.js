@@ -4,7 +4,7 @@ import Login from '../components/auth/login.vue';
 import Register from '../components/auth/register.vue';
 import Dashboard from '../components/dashboard/dashboard.vue';
 import ProductDetail from '../components/product/detail_product/detail.vue'
-
+import User from '../components/user/index.vue'
 const router = new VueRouter({
   mode: 'history',
   // routes: routes,
@@ -29,6 +29,14 @@ const router = new VueRouter({
       name: 'Product',
       path: '/product',
       component: Product,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      name: 'User',
+      path: '/user/profile',
+      component: User,
       meta: {
         requiresAuth: true
       }

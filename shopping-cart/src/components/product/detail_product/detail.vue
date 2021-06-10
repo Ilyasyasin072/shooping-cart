@@ -1,7 +1,6 @@
 <template>
   <b-container class="container mt-5">
     <b-row>
-      {{ product_detail }}
       <b-col>
         <b-card
           title="Card Title"

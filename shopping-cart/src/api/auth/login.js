@@ -12,7 +12,7 @@ const api = axios.create({
 
 function auth(data,cb) {
     api.post('/auth/login', data).then((res) => {
-        setUserSession(res.data.token, res.data.user)
+        setUserSession(res.data.token, res.data.name.first)
         cb(res.data)
     })
 }

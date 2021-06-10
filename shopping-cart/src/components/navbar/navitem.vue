@@ -1,17 +1,20 @@
 <template>
   <div>
-     <b-navbar-nav v-if="userLogin">
-        <b-nav-item>Cart (0)</b-nav-item>
-        <b-nav-item @click="logout">Logout</b-nav-item>
-     </b-navbar-nav>
-     <b-navbar-nav  v-else>
-        <b-nav-item>
+    <b-navbar-nav v-if="userLogin">
+      <b-nav-item>Cart (0)</b-nav-item>
+      <b-nav-item @click="logout">Logout</b-nav-item>
+      <b-nav-item>
+        <router-link to="/user/profile">Profile</router-link>
+      </b-nav-item>
+    </b-navbar-nav>
+    <b-navbar-nav v-else>
+      <b-nav-item>
         <router-link to="/login">Login</router-link>
       </b-nav-item>
       <b-nav-item>
         <router-link to="/register">Register</router-link>
       </b-nav-item>
-     </b-navbar-nav>
+    </b-navbar-nav>
   </div>
 </template>
 
