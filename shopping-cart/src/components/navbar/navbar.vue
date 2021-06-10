@@ -33,7 +33,6 @@ export default {
         //decode token here and attach to the user object
         let decoded = VueJwtDecode.decode(token);
         this.user = decoded;
-        console.log(this.user);
       } catch (error) {
         // return error in production env
         localStorage.removeItem("token");

@@ -107,7 +107,7 @@ export default {
     addCart:function() {
       this.userLogin = authHeader().Authorization
       if(this.userLogin ) {
-        console.log(this.product_detail._id) 
+        console.log(this.product_detail) 
       } else {
         this.$router.push('/login')
       }
