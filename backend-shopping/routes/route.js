@@ -13,9 +13,9 @@ const userController = require('../controllers/userController');
 const userAddressController = require('../controllers/userAddressController');
 const userPaymentController = require('../controllers/userPaymentController');
 const authController = require('../controllers/authController');
-const phoneController  = require('../controllers/phoneController')
+const phoneController = require('../controllers/phoneController')
 router.group('/v1', (router) => {
-    
+
     router.group('/auth', (router) => {
         router.post('/register', authController.register)
         router.post('/login', authController.login)
@@ -24,8 +24,8 @@ router.group('/v1', (router) => {
 
     router.group('/user', (router) => {
 
-        router.get('/' , userController.index)
-        
+        router.get('/', userController.index)
+
         router.group('/address', (router) => {
             router.get('/', userAddressController.index)
             router.post('/create-address', userAddressController.store)
@@ -37,17 +37,22 @@ router.group('/v1', (router) => {
         })
 
         router.group('/phone', (router) => {
-            router.post('/create-phone', phoneController.store )
+            router.post('/create-phone', phoneController.store)
+        })
+
+        router.group('/cart', (router) => {
+            router.get('/', cart.cart);
+            router.post('/cart-create', cart.cart);
         })
     })
 
     router.group('/product', (router) => {
         router.get('/', productController.index);
-        router.post('/create',  productController.store)
-        router.get('/show/:id',  productController.show)
+        router.post('/create', productController.store)
+        router.get('/show/:id', productController.show)
 
         router.group('/category', (router) => {
-            router.get('/', productCategory.index); 
+            router.get('/', productCategory.index);
             router.post('/create', productCategory.store)
         })
 
@@ -62,8 +67,6 @@ router.group('/v1', (router) => {
         })
 
     })
-    
-    router.get('/cart', cart.index);
 })
 
 module.exports = router;

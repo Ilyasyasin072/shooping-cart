@@ -1,31 +1,46 @@
-const {Schema, model} = require('../config/connection')
+const { Schema, model } = require('../config/connection')
 
 const CartItemSchema = new Schema({
     // relational to shopping session
-    session_id: {
-        type: Number,
-        required: true,
-        validated: {
-            validator : Number.isInteger,
-            message   : '{VALUE} is not an integer value'
-        }
+    // session_id: {
+    //     type: Schema.Types.ObjectId,
+    //     required: true
+    // },
+    user_id: {
+        type: Schema.Types.ObjectId,
+        required: true
+        // ref: 'User'
     },
-    product_id: {
-        type: Number,
-        required: true,
-        validated: {
-            validator : Number.isInteger,
-            message   : '{VALUE} is not an integer value'
+    // product_id: {
+    //     type: Number,
+    //     required: true,
+    //     validated: {
+    //         validator : Number.isInteger,
+    //         message   : '{VALUE} is not an integer value'
+    //     }
+    // },
+    products: [
+        {
+            productId: Schema.Types.ObjectId,
+            quantity: Number,
         }
-    },
-    quantity: {
-        type: Number,
-        required: true,
-        validated: {
-            validator : Number.isInteger,
-            message   : '{VALUE} is not an integer value'
-        }
-    }
+    ],
+    // quantity: {
+    //     type: Number,
+    //     required: true,
+    //     validated: {
+    //         validator: Number.isInteger,
+    //         message: '{VALUE} is not an integer value'
+    //     }
+    // }
+    active: {
+        type: Boolean,
+        default: true
+      },
+      modifiedOn: {
+        type: Date,
+        default: Date.now
+      } 
 }, {
     timestamps: true, versionKey: false
 })
