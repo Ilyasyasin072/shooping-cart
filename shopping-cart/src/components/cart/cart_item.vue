@@ -1,29 +1,32 @@
 <template>
-  <div class="box">
-    <div class="cart-item__details">
-      <p class="is-inline">{{cartItem.title}}</p>
-      <div>
-        <span class="cart-item--price has-text-info has-text-weight-bold">
-          ${{cartItem.price}} X {{cartItem.quantity}}
-        </span>
-
-        <span>
-          <i class="fa fa-arrow-circle-up cart-item__modify" @click="addCartItem(cartItem)"></i>
-        </span>
-      </div>
-
-    </div>
+  <div>
+    <b-list-group
+      v-for="product_item in cartItems.products"
+      :key="product_item._id"
+    >
+      <b-row>
+        <b-col class="mb-3">
+          <b-list-group-item disabled
+            >Product : {{ product_item.productId }}</b-list-group-item
+          >
+          <b-list-group-item
+            >quantity : {{ product_item.quantity }}</b-list-group-item
+          >
+          <b-list-group-item
+            >price : {{ product_item.price }}</b-list-group-item
+          >
+        </b-col>
+      </b-row>
+    </b-list-group>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 export default {
-  name: 'CartListItem',
-  props: ['cartItem'],
+  name: "CartListItem",
+  props: ["cartItems"],
   methods: {
-    ...mapActions([
-      'addCart',
-    ])
-  }
-}
+    ...mapActions(["addCart"]),
+  },
+};
 </script>

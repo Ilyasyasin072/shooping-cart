@@ -43,7 +43,8 @@
             <li>{{ user_detail.email }}</li>
             <li>{{ user_detail.telephone }}</li>
           </ul>
-          <b-list-group
+          <CartListItem :cartItems="cartItems"/>
+          <!-- <b-list-group
             v-for="product_item in cartItems.products"
             :key="product_item._id"
           >
@@ -58,7 +59,7 @@
                 <b-list-group-item>price : {{ product_item.price }}</b-list-group-item>
               </b-col>
             </b-row>
-          </b-list-group>
+          </b-list-group> -->
         </b-col>
       </b-row>
     </b-container>
@@ -66,12 +67,12 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-// import CartListItem from "./cart_item";
+import CartListItem from "./cart_item";
 import { authHeader } from "../../utils/common";
 export default {
   name: "CartList",
   components: {
-    // CartListItem
+    CartListItem
   },
   computed: {
     ...mapGetters({

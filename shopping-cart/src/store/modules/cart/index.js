@@ -27,7 +27,7 @@ const actions = {
 
 
     addCart({commit}, cartItems) {
-        cartApi.addCartApi(cartItems, (res) => {
+        cartApi.addCartApi( cartItems, (res) => {
             commit('GET_CART', res)
         })
     }

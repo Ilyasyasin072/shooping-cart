@@ -27,8 +27,9 @@ const router = new VueRouter({
       }
     }, {
       name: 'cart',
-      path: '/cart',
+      path: '/cart/user',
       component: Cart,
+      props : true,
       meta: {
         requiresAuth: true
       }

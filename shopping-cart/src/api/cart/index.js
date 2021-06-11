@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { baseUri } from '../../config/http-common'
 
+import { authHeader } from '../../utils/common'
 
 const api = axios.create({
     baseURL: baseUri.uri
@@ -25,7 +26,15 @@ function getCart(data, cb) {
 }
 
 function addCart(data, cb) {
-    api.post('user/cart/cart-create').then((res) => {
+    const token = authHeader().Authorization
+    api.post('/user/cart/cart-create', {
+        productId: data.productId,
+        qty: data.qty,
+        quantity: data.quantity,
+        price: data.total,
+    }, { headers : {
+        'Content-Type': 'application/json',
+        'Authorization':  token  }}).then((res) => {
         cb(res.data)
     })
 }
