@@ -152,14 +152,10 @@ const remove = async (req, res) => {
       let cart = await Cart.updateOne({
         user_id: userId
       }, {
-        $pull: 
-        // {
-        //   products: ObjectId(req.body._id)
-        // },
-        { "products": {_id:   ObjectId(req.body._id)} }
+        $pull: { "products": {_id:   ObjectId(req.body._id)} }
       })
 
-      res.json('success')
+      res.json(cart)
     } catch (error) {
       res.json(error.message)
     }
