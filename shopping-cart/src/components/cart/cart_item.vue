@@ -10,7 +10,7 @@
             >Product : {{ product_item.productId }}</b-list-group-item
           >
           <b-list-group-item
-            >quantity : {{ product_item.quantity }}</b-list-group-item
+            >quantity : <b-button class="btn-minus">-</b-button>{{ product_item.quantity }}<b-button class="btn-plus">+</b-button></b-list-group-item
           >
           <b-list-group-item
             >price : {{ product_item.price }}</b-list-group-item
@@ -30,3 +30,14 @@ export default {
   },
 };
 </script>
+
+<style>
+  .btn-minus {
+    width: 20px;
+    border-radius: 50%;
+  }
+  .btn-plus {
+    width: 20px;
+    border-radius: 50%;
+  }
+</style>

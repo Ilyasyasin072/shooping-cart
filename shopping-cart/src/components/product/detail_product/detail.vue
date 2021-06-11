@@ -60,16 +60,16 @@
     </b-row>
     <hr />
     <b-row>
-      <!-- <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
+      <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
         <ProductListItem :product="item" />
-      </b-col> -->
+      </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-// import ProductListItem from "../product_list.vue";
+import ProductListItem from "../product_list.vue";
 import { authHeader } from "../../../utils/common";
 export default {
   name: "DetailView",
@@ -84,7 +84,7 @@ export default {
     };
   },
   components: {
-    // ProductListItem: ProductListItem,
+    ProductListItem: ProductListItem,
   },
   computed: mapGetters({
     product_detail: "productDetail",
