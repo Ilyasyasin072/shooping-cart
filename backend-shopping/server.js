@@ -10,7 +10,7 @@ const app = express();
 
 const router = require('./routes/route');
 
-app.use(cors())
+// app.use(cors())
 
 app.set('port', (process.env.NODE_PORT || 3000));
 app.use(bodyParser.json());

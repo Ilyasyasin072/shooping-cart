@@ -43,6 +43,7 @@ router.group('/v1', (router) => {
         router.group('/cart', (router) => {
             router.get('/', cart.index);
             router.post('/cart-create', cart.cart);
+            router.put('/remove', cart.remove)
         })
     })
 

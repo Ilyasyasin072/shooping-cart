@@ -9,18 +9,20 @@ const index = (req, res) => {
         {
           $match: { user_id: ObjectId(req.user._id) }
         },
-        // {
-        //   $lookup: {
-        //     from: 'products',
-        //     localField: 'products.productId',
-        //     foreignField: '_id', as: 'products'
-        //   },
-        // },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'user_id',
+            foreignField: '_id', as: 'users'
+          },
+        },
       ])
 
 
       aggregateQuery.exec((err, result) => {
-        res.json(result)
+        result.filter(cart => {
+          res.json(cart)
+        })
       })
 
     } catch (error) {
@@ -141,9 +143,31 @@ const cart = async (req, res) => {
   }
 }
 
+const remove = async (req, res) => {
+  const ObjectId = mongoose.Types.ObjectId;
+  console.log(req.body._id)
+  if (req.user) {
+    try {
+      const userId = req.user._id
+      let cart = await Cart.updateOne({
+        user_id: userId
+      }, {
+        $pull: 
+        // {
+        //   products: ObjectId(req.body._id)
+        // },
+        { "products": {_id:   ObjectId(req.body._id)} }
+      })
 
+      res.json('success')
+    } catch (error) {
+      res.json(error.message)
+    }
+  }
+}
 
 module.exports = {
   index,
-  cart
+  cart,
+  remove
 }
