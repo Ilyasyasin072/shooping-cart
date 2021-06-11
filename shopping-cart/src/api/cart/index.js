@@ -17,19 +17,20 @@ const api = axios.create({
 //     })
 // }
 
-function getCart(cb) {
-    api.get('cart').then((res) => {
+function getCart(data, cb) {
+    api.get('user/cart',  { headers : {
+        'Authorization':  data  }}).then((res) => {
         cb(res.data)
     })
 }
 
 function addCart(data, cb) {
-    api.post('cart/add').then((res) => {
+    api.post('user/cart/cart-create').then((res) => {
         cb(res.data)
     })
 }
 
 export default {
-    getCartApi: cb => getCart(cb),
+    getCartApi: (data, cb) => getCart(data, cb),
     addCartApi: (data,cb) => addCart(data,cb)
 }

@@ -19,8 +19,8 @@ const getters ={
 }
 
 const actions = {
-    getStoreCart({commit}) {
-       cartApi.getCartApi((res) => {
+    getStoreCart({commit}, token) {
+       cartApi.getCartApi(token,(res) => {
         commit('GET_CART', res);
        })
     },
