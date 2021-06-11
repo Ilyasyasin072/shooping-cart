@@ -61,7 +61,7 @@ const cart = async (req, res) => {
   //   })
   // }
   // references https://stackoverflow.com/questions/59174763/how-to-add-product-to-shopping-cart-with-nodejs-express-and-mongoose
-  const { productId, quantity, name, price } = req.body;
+  const { productId, quantity, price, total } = req.body;
 
   if(req.user) {
     const userId = req.user._id
@@ -75,13 +75,23 @@ const cart = async (req, res) => {
         // action if product exists on car
         let productItem = cart.products[itemIndex];
         productItem.quantity = quantity
+        productItem.price = price
         cart.products[itemIndex] = productItem;
+        
+        // get total
+        
+        let totalSum = 0
 
+        for (const items of cart.products) {
+          totalSum += items.quantity * items.price
+        }
+        cart.total = totalSum
+      
       } else {
 
         // action if product null on crt
         cart.products.push({
-          productId, quantity
+          productId, quantity, price
         })
       }
 
@@ -92,10 +102,11 @@ const cart = async (req, res) => {
 
       const newCart = await Cart.create({
         user_id: userId,
-        products: [{ productId, quantity }]
+        products: [{ productId, quantity, price }],
+        total: total
       });
 
-      res.json(newCart)
+      return res.json(newCart)
     }
   }
 }

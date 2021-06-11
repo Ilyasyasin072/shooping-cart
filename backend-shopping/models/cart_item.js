@@ -1,5 +1,7 @@
 const { Schema, model } = require('../config/connection')
 
+
+const mongoose = require('mongoose')
 const CartItemSchema = new Schema({
     // relational to shopping session
     // session_id: {
@@ -23,8 +25,12 @@ const CartItemSchema = new Schema({
         {
             productId: Schema.Types.ObjectId,
             quantity: Number,
+            price: Number,
         }
     ],
+    total: {
+        type : Number
+    },
     // quantity: {
     //     type: Number,
     //     required: true,
