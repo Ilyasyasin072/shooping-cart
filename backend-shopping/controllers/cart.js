@@ -129,7 +129,29 @@ const cart = async (req, res) => {
 
       cart = await cart.save()
 
-      return res.status(200).json(cart)
+
+      const ObjectId = mongoose.Types.ObjectId;
+
+      var aggregateQuery = Cart.aggregate([
+        {
+          $match: { user_id: ObjectId(userId) }
+        },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'user_id',
+            foreignField: '_id', as: 'users'
+          },
+        },
+      ])
+
+
+      aggregateQuery.exec((err, result) => {
+        result.filter(cart => {
+          res.json(cart)
+        })
+      })
+
     } else {
 
       const newCart = await Cart.create({
@@ -149,13 +171,33 @@ const remove = async (req, res) => {
   if (req.user) {
     try {
       const userId = req.user._id
-      let cart = await Cart.updateOne({
+      await Cart.updateOne({
         user_id: userId
       }, {
-        $pull: { "products": {_id:   ObjectId(req.body._id)} }
+        $pull: { "products": { _id: ObjectId(req.body._id) } }
       })
 
-      res.json(cart)
+      // let cart_ = await Cart.findOne({ user_id: userId });
+
+      var aggregateQuery = Cart.aggregate([
+        {
+          $match: { user_id: ObjectId(userId) }
+        },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'user_id',
+            foreignField: '_id', as: 'users'
+          },
+        },
+      ])
+
+
+      aggregateQuery.exec((err, result) => {
+        result.filter(cart => {
+          res.json(cart)
+        })
+      })
     } catch (error) {
       res.json(error.message)
     }
