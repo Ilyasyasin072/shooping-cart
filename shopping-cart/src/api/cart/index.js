@@ -39,7 +39,22 @@ function addCart(data, cb) {
     })
 }
 
+
+function removeCart(data, cb) {
+    const token = authHeader().Authorization
+    console.log(data.productId)
+    api.put('/user/cart/remove', {
+        _id: data.productId
+    }, { headers : {
+        'Content-Type': 'application/json',
+        'Authorization':  token  }}).then((res) => {
+            console.log(res)
+        cb(res.data)
+    })
+}
+
 export default {
     getCartApi: (data, cb) => getCart(data, cb),
-    addCartApi: (data,cb) => addCart(data,cb)
+    addCartApi: (data,cb) => addCart(data,cb),
+    removeCartApi: (data, cb) => removeCart(data, cb),
 }

@@ -15,19 +15,37 @@
           <b-list-group-item
             >price : {{ product_item.price }}</b-list-group-item
           >
+           <b-list-group-item><b-button @click="remove(product_item._id)">remove</b-button></b-list-group-item
+          >
         </b-col>
       </b-row>
     </b-list-group>
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import {mapGetters, mapActions } from "vuex";
+
+// import { authHeader } from "../../utils/common";
 export default {
   name: "CartListItem",
-  props: ["cartItems"],
+  // props: ["cartItems"],
   methods: {
-    ...mapActions(["addCart"]),
+    ...mapActions(["addCart", "removeCart", "getStoreCart"]),
+    remove: function(productId) {
+      this.removeCart({ productId: productId})
+    },
   },
+   computed: {
+    ...mapGetters({
+      cartItems: "cartItems",
+      // cartTotal: "cartTotal"
+    }),
+  },
+  //  watch: {
+  //   $route() {
+  //     this.remove();
+  //   },
+  // },
 };
 </script>
 

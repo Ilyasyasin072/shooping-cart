@@ -38,12 +38,12 @@
       </b-col>
       <b-col>
         <b-alert show v-if="product_detail.discounts">
-          <b-text>
+          <h5>
             Promo
             <b-badge variant="success"
               >{{ product_detail.discounts.discount_percent }} %</b-badge
             >
-          </b-text>
+          </h5>
         </b-alert>
         <b-card>
           <b-card-text>

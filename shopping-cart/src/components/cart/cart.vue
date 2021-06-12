@@ -34,6 +34,7 @@
   </div> -->
   <div class="CartList">
     <b-container class="mt-5">
+     
       <b-row>
         <b-col>
           <ul v-for="user_detail in cartItems.users" :key="user_detail._id">
@@ -43,23 +44,26 @@
             <li>{{ user_detail.email }}</li>
             <li>{{ user_detail.telephone }}</li>
           </ul>
-          <CartListItem :cartItems="cartItems"/>
-          <!-- <b-list-group
-            v-for="product_item in cartItems.products"
-            :key="product_item._id"
+     <b-list-group
+      v-for="product_item in cartItems.products"
+      :key="product_item._id"
+    >
+      <b-row>
+        <b-col class="mb-3">
+          <b-list-group-item disabled
+            >Product : {{ product_item.productId }}</b-list-group-item
           >
-            <b-row>
-              <b-col class="mb-3">
-                <b-list-group-item disabled>Product : {{
-                  product_item.productId
-                }}</b-list-group-item>
-                <b-list-group-item>quantity : {{
-                  product_item.quantity
-                }}</b-list-group-item>
-                <b-list-group-item>price : {{ product_item.price }}</b-list-group-item>
-              </b-col>
-            </b-row>
-          </b-list-group> -->
+          <b-list-group-item
+            >quantity : <b-button class="btn-minus">-</b-button>{{ product_item.quantity }}<b-button class="btn-plus">+</b-button></b-list-group-item
+          >
+          <b-list-group-item
+            >price : {{ product_item.price }}</b-list-group-item
+          >
+           <b-list-group-item><b-button @click="remove(product_item._id)">remove</b-button></b-list-group-item
+          >
+        </b-col>
+      </b-row>
+    </b-list-group>
         </b-col>
       </b-row>
     </b-container>
@@ -67,26 +71,28 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import CartListItem from "./cart_item";
 import { authHeader } from "../../utils/common";
 export default {
   name: "CartList",
   components: {
-    CartListItem
   },
   computed: {
     ...mapGetters({
       cartItems: "cartItems",
+      // cartTotal: "cartTotal"
     }),
   },
   // created() {
   //   this.$store.dispatch("getStoreCart");
   // },
   methods: {
-    ...mapActions(["getStoreCart"]),
+    ...mapActions(["getStoreCart", "removeCart"]),
     cart: function() {
       const token = authHeader().Authorization;
       this.getStoreCart(token);
+    },
+     remove: function(productId) {
+      this.removeCart({ productId: productId})
     },
   },
 
