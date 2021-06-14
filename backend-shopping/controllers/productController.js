@@ -45,7 +45,7 @@ const index = async (req, res) => {
         },
 
     ])
-
+    aggregateQuery.limit(6)
     aggregateQuery.exec(function (err, result) {
         const data = new ApiResponser('GET', result, 200)
         res.json(data.data);

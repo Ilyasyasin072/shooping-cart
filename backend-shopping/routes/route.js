@@ -45,6 +45,10 @@ router.group('/v1', (router) => {
             router.post('/cart-create', cart.cart);
             router.put('/remove', cart.remove)
         })
+
+        router.group('/order-cart', (router) => {
+            router.post('/create', cart.order)
+        })
     })
 
     router.group('/product', (router) => {

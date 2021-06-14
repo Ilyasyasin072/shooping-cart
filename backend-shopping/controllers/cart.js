@@ -1,5 +1,7 @@
 const Cart = require('../models/cart_item');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const OrderDetail = require('../models/order_detail')
+const OrderItem = require('../models/order_item')
 
 const index = (req, res) => {
   if (req.user) {
@@ -167,7 +169,6 @@ const cart = async (req, res) => {
 
 const remove = async (req, res) => {
   const ObjectId = mongoose.Types.ObjectId;
-  console.log(req.body._id)
   if (req.user) {
     try {
       const userId = req.user._id
@@ -204,8 +205,67 @@ const remove = async (req, res) => {
   }
 }
 
+const order = async (req, res) => {
+
+  const ObjectId = mongoose.Types.ObjectId;
+
+  // const { productId, quantity, price, total } = req.body;
+
+  if (req.user) {
+
+    const userId = req.user._id
+
+    let cart = await Cart.findOne({ user_id: userId });
+
+
+    let totalSum = 0;
+    for (const items of cart.products) {
+      totalSum += items.quantity * items.price
+    }
+
+    const order_detail = await OrderDetail.create({
+      user_id: ObjectId(userId),
+      total: totalSum,
+      payment_id: 1
+    })
+
+    const order_cart = cart.products
+    order_cart.filter(cart => {
+      return OrderItem.create({
+        order_id: order_detail._id,
+        cart_items: [{
+          productId: cart.productId,
+          quantity: cart.quantity,
+          price: cart.price,
+      }]
+      })
+    })
+
+    await Cart.updateOne({
+      user_id: userId
+    }, {
+      $pull: { "products": {} }
+    })
+
+    res.json('success')
+    // res.json(order_cart)
+
+    // const new_order = await OrderItem.create({
+    //   order_id: order_detail._id,
+    //   products: [{
+    //     productId: 
+    //   }],
+    // });
+
+    // res.json(new_order)
+
+  }
+
+}
+
 module.exports = {
   index,
   cart,
-  remove
+  remove,
+  order
 }

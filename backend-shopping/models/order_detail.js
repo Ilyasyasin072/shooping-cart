@@ -1,14 +1,15 @@
 const {Schema, model} = require('../config/connection')
 
 const OrderDetailSchema = new Schema({
-    user_id: {
-        type: Number,
-        required: true,
-        validated: {
-            validator : Number.isInteger,
-            message   : '{VALUE} is not an integer value'
-        }
-    },
+    // user_id: {
+    //     type: Number,
+    //     required: true,
+    //     validated: {
+    //         validator : Number.isInteger,
+    //         message   : '{VALUE} is not an integer value'
+    //     }
+    // },
+    user_id: Schema.ObjectId,
     total: {
         type: String,
         required: true,
@@ -29,7 +30,7 @@ const OrderDetailSchema = new Schema({
     timestamps: true, versionKey: false
 })
 
-const OrderDetail = model('order_item', OrderDetailSchema)
+const OrderDetail = model('order_details', OrderDetailSchema)
 
 
 module.exports = OrderDetail
