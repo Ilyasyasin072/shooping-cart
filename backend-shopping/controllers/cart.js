@@ -209,7 +209,7 @@ const order = async (req, res) => {
 
   const ObjectId = mongoose.Types.ObjectId;
 
-  // const { productId, quantity, price, total } = req.body;
+  const { productId } = req.body;
 
   if (req.user) {
 
@@ -217,47 +217,54 @@ const order = async (req, res) => {
 
     let cart = await Cart.findOne({ user_id: userId });
 
+    let itemIndex = cart.products.findIndex(p => p.productId == productId);
+    let productItem = cart.products[itemIndex];
+   
 
-    let totalSum = 0;
-    for (const items of cart.products) {
-      totalSum += items.quantity * items.price
-    }
+
+    // let totalSum = 0;
+    // for (const items of cart.products) {
+    //   totalSum += items.quantity * items.price
+    // }
 
     const order_detail = await OrderDetail.create({
       user_id: ObjectId(userId),
-      total: totalSum,
+      total: 10,
       payment_id: 1
     })
+    console.log(productItem._id)
+    // productItem.filter(cart => {
+    //   // if(cart.productId == ObjectId(req.body.product_id)) {
+    //     // console.log(cart)
+    //     return OrderItem.create({
+    //       order_id: order_detail._id,
+    //         cart_items: [{
+    //           productId: cart.productId,
+    //           quantity: cart.quantity,
+    //           price: cart.price,
+    //       }]
+    //     })
+    //   // }
+      
+    // })
 
-    const order_cart = cart.products
-    order_cart.filter(cart => {
-      return OrderItem.create({
-        order_id: order_detail._id,
+   await OrderItem.create({
+      order_id: order_detail._id,
         cart_items: [{
-          productId: cart.productId,
-          quantity: cart.quantity,
-          price: cart.price,
+          productId: productItem.productId,
+          quantity: productItem.quantity,
+          price: productItem.price,
       }]
-      })
     })
 
+    // _id: ObjectId(req.body._id)
     await Cart.updateOne({
       user_id: userId
     }, {
-      $pull: { "products": {} }
+      $pull: { "products": {  _id: ObjectId(productItem._id) } }
     })
 
     res.json('success')
-    // res.json(order_cart)
-
-    // const new_order = await OrderItem.create({
-    //   order_id: order_detail._id,
-    //   products: [{
-    //     productId: 
-    //   }],
-    // });
-
-    // res.json(new_order)
 
   }
 
