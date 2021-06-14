@@ -1,7 +1,8 @@
 import cartApi from '../../../api/cart/index'
 
 const state = {
-    cartItems: [],
+    cartItems:[],
+    checkout: []
 }
 
 const getters ={
@@ -32,6 +33,12 @@ const actions = {
         })
     },
 
+    addCheckout({commit}, cartItems) {
+        cartApi.checkoutApi(cartItems,(res) => {
+            commit('GET_CHECKOUT', res)
+        })
+    },
+
     removeCart({commit}, cartItems) {
         cartApi.removeCartApi(cartItems, (res) => {
             commit('GET_CART', res)
@@ -44,6 +51,10 @@ const mutations = {
 
     GET_CART(state, payload) {
         state.cartItems = payload
+    },
+
+    GET_CHECKOUT(state, payload) {
+        state.checkout = payload
     },
 
 }

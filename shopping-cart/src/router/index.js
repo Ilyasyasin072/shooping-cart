@@ -6,6 +6,7 @@ import Dashboard from '../components/dashboard/dashboard.vue';
 import ProductDetail from '../components/product/detail_product/detail.vue'
 import User from '../components/user/index.vue'
 import Cart from '../components/cart/cart.vue'
+import Checkout from '../components/order/order.vue'
 const router = new VueRouter({
   mode: 'history',
   // routes: routes,
@@ -49,6 +50,12 @@ const router = new VueRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      name: 'Checkout',
+      path: '/checkout',
+      component: Checkout,
+      props: true,
     },
     {
       name: 'ProductDetail',

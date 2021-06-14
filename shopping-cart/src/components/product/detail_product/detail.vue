@@ -116,14 +116,21 @@ export default {
     addCartItem: function(productId, price) {
       this.userLogin = authHeader().Authorization;
       if (this.userLogin) {
-          const { qty, quantity } = this.cart_item;
-          this.addCart({
-            productId: productId,
-            qty: qty,
-            quantity: quantity,
-            total: price,
-          });
-        this.$router.push("/cart/user");
+        const { qty, quantity } = this.cart_item;
+        this.addCart({
+          productId: productId,
+          qty: qty,
+          quantity: quantity,
+          total: price,
+        });
+        // this.$router.push("/cart/user");
+        this.$fire({
+          title: "Success " + this.product_detail.product_inventories.name,
+          text: "text",
+          type: "success",
+          timer: 3000,
+        }).then(() => {
+        });
       } else {
         this.$router.push("/login");
       }

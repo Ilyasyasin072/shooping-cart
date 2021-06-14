@@ -1,6 +1,11 @@
 <template>
   <b-container>
     <b-row>
+      <b-col>
+      <input class="form-control mb-3" type="text" placeholder="Rounded input" />
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
         <ProductListItem :product="item" />
       </b-col>
@@ -28,8 +33,8 @@ export default {
   }),
   mounted() {
     setInterval(() => {
-          this.$store.dispatch("getProduct");
-    }, 2000)
+      this.$store.dispatch("getProduct");
+    }, 2000);
   },
 };
 </script>

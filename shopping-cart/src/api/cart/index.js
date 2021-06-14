@@ -19,8 +19,11 @@ const api = axios.create({
 // }
 
 function getCart(data, cb) {
-    api.get('user/cart',  { headers : {
-        'Authorization':  data  }}).then((res) => {
+    api.get('user/cart', {
+        headers: {
+            'Authorization': data
+        }
+    }).then((res) => {
         cb(res.data)
     })
 }
@@ -32,11 +35,29 @@ function addCart(data, cb) {
         qty: data.qty,
         quantity: data.quantity,
         price: data.total,
-    }, { headers : {
-        'Content-Type': 'application/json',
-        'Authorization':  token  }}).then((res) => {
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    }).then((res) => {
         cb(res.data)
     })
+}
+
+function addCheckout(data, cb) {
+    const token = authHeader().Authorization
+    for (let i = 0; i < data.length; i++) {
+        api.post('/user/order-cart/create', data[i], {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        }).then((res) => {
+            cb(res.data)
+        })
+    }
+
 }
 
 
@@ -45,16 +66,20 @@ function removeCart(data, cb) {
     console.log(data.productId)
     api.put('/user/cart/remove', {
         _id: data.productId
-    }, { headers : {
-        'Content-Type': 'application/json',
-        'Authorization':  token  }}).then((res) => {
-            console.log(res)
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    }).then((res) => {
+        console.log(res)
         cb(res.data)
     })
 }
 
 export default {
     getCartApi: (data, cb) => getCart(data, cb),
-    addCartApi: (data,cb) => addCart(data,cb),
+    addCartApi: (data, cb) => addCart(data, cb),
     removeCartApi: (data, cb) => removeCart(data, cb),
+    checkoutApi: (data, cb) => addCheckout(data, cb)
 }

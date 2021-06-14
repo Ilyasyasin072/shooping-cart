@@ -1,10 +1,7 @@
 <template>
   <div class="container">
     <div style="margin-top: 20px;">
-      <banner-list-view></banner-list-view>
-    </div>
-    <div style="margin-top: 20px;">
-      <input class="form-control" type="text" placeholder="Rounded input">
+      <!-- <banner-list-view></banner-list-view> -->
     </div>
     <div style="margin-top: 20px;">
       <product-list-view></product-list-view>
@@ -15,13 +12,13 @@
 <script>
 
 import ProductList from "../product/product";
-import BannerList from "../banner/banner";
+// import BannerList from "../banner/banner";
 
 export default {
   name: "DashboardList",
   components: {
     ProductListView: ProductList,
-    BannerListView: BannerList,
+    // BannerListView: BannerList,
   },
 };
 </script>
