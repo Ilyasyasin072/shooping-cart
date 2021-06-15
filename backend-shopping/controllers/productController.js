@@ -68,15 +68,22 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
 
-    const product = {
-        category_id: req.body.category_id,
-        inventory_id: req.body.inventory_id,
-        price: req.body.price,
-        discount_id: req.body.discount_id
-    }
+    // const product = {
+    //     category_id: req.body.category_id,
+    //     inventory_id: req.body.inventory_id,
+    //     price: req.body.price,
+    //     discount_id: req.body.discount_id,
+    //     image_product: req.body.image_product,
+    // }
 
     try {
-        const productInventory = await Product.create(product);
+        const productInventory = await Product.create({
+            category_id: req.body.category_id,
+            inventory_id: req.body.inventory_id,
+            sku: req.body.sku,
+            price: req.body.price,
+            discount_id: req.body.discount_id,
+        });
 
         res.json({
             'method': 'POST',

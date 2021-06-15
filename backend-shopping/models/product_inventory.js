@@ -3,6 +3,18 @@ const { Schema, model } = require('../config/connection');
 const ProductInventorySchema = new Schema({
     name: String,
     desc: String,
+    image_product : String,
+    image_detail: [{
+      url: String,
+      title: String
+      
+    }],
+    size_product: [
+      {
+        size: Number,
+        quantity: Number,
+      }
+    ],
     quantity: {
         type     : Number,
         required : true,

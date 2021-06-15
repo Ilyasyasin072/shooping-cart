@@ -3,9 +3,18 @@ const { Schema, model } = require('../config/connection');
 const ProductSchema = new Schema({
     name: String,
     desc: String,
-    SKU: String,
+    SKU: {
+      type: String,
+      required : true,
+      // unique   : true,
+      validate : {
+        validator : String,
+        message   : '{VALUE} required'
+      }
+    },
     category_id : Schema.ObjectId,
     inventory_id : Schema.ObjectId,
+    discount_id: Schema.ObjectId,
     price: {
         type     : Number,
         required : true,
@@ -15,7 +24,6 @@ const ProductSchema = new Schema({
           message   : '{VALUE} is not an integer value'
         }
       },
-      discount_id: Schema.ObjectId,
 }, {
 
     timestamps: true, versionKey: false

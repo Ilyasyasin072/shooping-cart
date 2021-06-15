@@ -23,7 +23,16 @@ const store = async (req, res) => {
 
     const product_category = {
         name: req.body.name,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        image_product: req.body.image_product,
+        image_detail: [{
+            url: req.body.url,
+            title: req.body.title
+        }],
+        size_product: [{
+            size: req.body.size,
+            quantity: req.body.quantity,
+        }]
     }
 
     try {

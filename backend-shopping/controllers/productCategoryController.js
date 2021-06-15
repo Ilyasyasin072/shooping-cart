@@ -23,7 +23,7 @@ const store = async (req, res) => {
 
     const product_category = {
         name: req.body.name,
-        desc: req.body.desc
+        desc: req.body.desc,
     }
 
     try {

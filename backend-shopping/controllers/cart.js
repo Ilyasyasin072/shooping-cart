@@ -222,14 +222,14 @@ const order = async (req, res) => {
    
 
 
-    // let totalSum = 0;
-    // for (const items of cart.products) {
-    //   totalSum += items.quantity * items.price
-    // }
+    let totalSum = 0;
+    for (const items of cart.products) {
+      totalSum += items.quantity * items.price
+    }
 
     const order_detail = await OrderDetail.create({
       user_id: ObjectId(userId),
-      total: 10,
+      total: totalSum,
       payment_id: 1
     })
     console.log(productItem._id)
