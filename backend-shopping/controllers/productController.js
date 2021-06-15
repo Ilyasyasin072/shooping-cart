@@ -80,7 +80,7 @@ const store = async (req, res) => {
         const productInventory = await Product.create({
             category_id: req.body.category_id,
             inventory_id: req.body.inventory_id,
-            sku: req.body.sku,
+            SKU: req.body.sku,
             price: req.body.price,
             discount_id: req.body.discount_id,
         });
