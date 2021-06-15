@@ -7,9 +7,11 @@ import store from './store/index'
 import axios from 'axios'
 import VueJwtDecode from 'vue-jwt-decode'
 import VueSimpleAlert from "vue-simple-alert";
+import VModal from 'vue-js-modal'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
+import 'vue-js-modal/dist/styles.css'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -18,6 +20,8 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(VueJwtDecode)
 Vue.use(VueSimpleAlert);
+Vue.use(VModal)
+
 Vue.config.productionTip = false
 
 window.onload = function () {

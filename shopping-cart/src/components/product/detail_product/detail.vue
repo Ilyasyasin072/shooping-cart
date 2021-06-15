@@ -1,70 +1,149 @@
 <template>
-  <b-container class="container mt-5">
-    <b-row>
-      <b-col>
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=25"
+  <div class="container">
+    <div class="row mt-5 mb-5">
+      <div class="col-md-6">
+            <img
+          :title="product_detail.product_inventories.name"
+          :src="product_detail.product_inventories.image_product"
           img-alt="Image"
           img-top
-          tag="article"
-          style="max-width: 60rem;"
+          tag=""
+          style="max-width: 30rem;"
+          class="mb-2 text-center"
+        />
+        <div class="row mt-3">
+          <div class="col-3" v-for="img_detail in product_detail.product_inventories.image_detail" :key="img_detail._id">
+             <img
+          :src="img_detail.url"
+          img-alt="Image"
+          img-top
+          tag="T-shirt"
+          style="max-width:5rem;"
           class="mb-2"
-        >
-          <b-card-text>
-            {{ product_detail.product_inventories.name }}
-            {{ product_detail.product_inventories.desc }}
-          </b-card-text>
-        </b-card>
-      </b-col>
-      <b-col>
-        <b-card-group deck>
-          <b-card header="Card with list group">
-            <b-list-group>
-              <b-list-group-item href="#">
-                {{ product_detail.product_categories.name }}</b-list-group-item
+        />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <router-link to="/" class="bread-item text-muted"
+                >Home</router-link
               >
-              <b-list-group-item href="#">
-                {{
-                  product_detail.product_inventories.quantity
-                }}</b-list-group-item
+            </li>
+            <li class="breadcrumb-item">
+              <router-link to="/" class="bread-item text-muted"
+                >T-Shirt</router-link
               >
-            </b-list-group>
-            <p class="card-text mt-2">
-              {{ product_detail.product_categories.desc }}
-            </p>
-          </b-card>
-        </b-card-group>
-      </b-col>
-      <b-col>
-        <b-alert show v-if="product_detail.discounts">
-          <h5>
-            Promo
-            <b-badge variant="success"
-              >{{ product_detail.discounts.discount_percent }} %</b-badge
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ product_detail.product_categories.name }}</li>
+          </ol>
+        </nav>
+        <h1 class="text-muted fw-bold">{{ product_detail.product_inventories.name }}</h1>
+        <hr />
+        <h3>{{ product_detail.price }}</h3>
+        <div class="row mt-3">
+          <div class="col-md-5 col-2">
+            <p class="fw-bold pt-2">Size (XS, M, XL, XXL)</p>
+            <p class="fw-bold pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, nesciunt excepturi minima voluptatum saepe commodi vitae nobis ea perspiciatis maiores? Nam, corrupti. Doloribus, amet? Illum sapiente error deleniti facere ipsum?</p>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-7 col-7">
+              <button class="btn btn-dark" @click="addCartItem(product_detail._id, product_detail.price)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
             >
-          </h5>
-        </b-alert>
-        <b-card>
-          <b-card-text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </b-card-text>
-          <b-button
-            variant="success"
-            @click="addCartItem(product_detail._id, product_detail.price)"
-            >Add Cart</b-button
+              Description
+            </button>
+            <button
+              class="nav-link"
+              id="nav-profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-profile"
+              type="button"
+              role="tab"
+              aria-controls="nav-profile"
+              aria-selected="false"
+            >
+              Additional Information
+            </button>
+            <button
+              class="nav-link"
+              id="nav-contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-contact"
+              type="button"
+              role="tab"
+              aria-controls="nav-contact"
+              aria-selected="false"
+            >
+              Reviews
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
           >
-        </b-card>
-      </b-col>
-    </b-row>
-    <hr />
-    <b-row>
-      <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
-        <ProductListItem :product="item" />
-      </b-col>
-    </b-row>
-  </b-container>
+            <p class="mt-3">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
+              cumque possimus quasi sequi temporibus ullam, animi quidem
+              voluptate in dolorem rem, magni architecto alias sunt distinctio
+              earum perferendis velit. Ipsam labore, aliquam amet numquam
+              commodi, iste, quaerat sit esse distinctio nobis repellendus
+              sapiente adipisci ipsa id non! Consectetur provident fugit ab aut
+              aperiam repellendus ipsam, deleniti expedita eum, cupiditate
+              molestiae alias voluptatibus incidunt animi quibusdam perferendis
+              esse minima eius nemo quisquam iusto est qui ratione error. Quam
+              sapiente minima ducimus quis placeat mollitia saepe illo, fuga
+              accusamus commodi iure, blanditiis consequuntur aliquid, aliquam
+              qui aut amet harum. Possimus iure id impedit dignissimos repellat
+              ratione, ea repudiandae, commodi ipsam similique voluptatibus rem
+              enim, accusamus expedita nihil natus cumque. Veniam aperiam
+              tenetur totam molestiae magni pariatur aliquam, obcaecati sed
+              saepe ipsam dolore expedita ducimus, officia necessitatibus facere
+              culpa eum exercitationem voluptates recusandae tempora rem! Quo ut
+              inventore quidem nostrum deserunt illo nobis? Ex, quia debitis
+              animi necessitatibus labore quidem maxime deserunt a perferendis,
+              numquam explicabo laudantium rem, modi nulla iste. Voluptatem
+              nostrum cum mollitia magni iste perferendis molestias fugit
+              dolores ut, impedit velit illo doloremque molestiae accusantium
+              rerum magnam debitis veritatis eos suscipit dignissimos vitae
+              asperiores. Repudiandae libero consequuntur quae praesentium
+              magnam!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col" v-for="item in product" :key="item._id">
+        <ProductListItem :product="item" />.
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -129,8 +208,7 @@ export default {
           text: "text",
           type: "success",
           timer: 3000,
-        }).then(() => {
-        });
+        }).then(() => {});
       } else {
         this.$router.push("/login");
       }

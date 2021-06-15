@@ -7,6 +7,7 @@
       style="max-width: 30rem;"
       class="mb-2"
     >
+    <img :src="product.product_inventories.image_product" class="img-fluid">
       <b-card-text>
         {{ product.product_inventories.name }}
       </b-card-text>

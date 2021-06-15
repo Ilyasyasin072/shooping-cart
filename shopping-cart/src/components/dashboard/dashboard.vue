@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <div style="margin-top: 20px;">
-      <!-- <banner-list-view></banner-list-view> -->
-    </div>
+  <div class="container-fluid">
+      <banner-list-view></banner-list-view>
     <div style="margin-top: 20px;">
       <product-list-view></product-list-view>
     </div>
@@ -12,13 +10,13 @@
 <script>
 
 import ProductList from "../product/product";
-// import BannerList from "../banner/banner";
+import BannerList from "../banner/banner";
 
 export default {
   name: "DashboardList",
   components: {
     ProductListView: ProductList,
-    // BannerListView: BannerList,
+    BannerListView: BannerList,
   },
 };
 </script>

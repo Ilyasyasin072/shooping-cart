@@ -22,8 +22,9 @@ export default {
     return {
       options: {
         rewind: true,
-        perPage: 2,
+        // perPage: 1,
         gap: "1rem",
+        autoWidth: true,
         autoplay: true,
         pauseOnHover: false,
         arrows: "slider",

@@ -1,15 +1,12 @@
 <template>
-  <b-navbar toggleable="lg" class="container-fluid" variant="default">
-    <b-navbar-brand href="#"
-      ><router-link to="/">Navbar</router-link></b-navbar-brand
-    >
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav class="ml-auto">
-        <NavBarItem />
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+  <nav class="bg-dark text-center pt-4 pb-3">
+    <div class="container">
+      <h3 class="my-cloth-name text-light">
+        Cloth <strong>BajuBanget</strong>
+      </h3>
+    </div>
+    <NavBarItem/>
+  </nav>
 </template>
 
 <script>
@@ -37,10 +34,12 @@ export default {
         // return error in production env
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        this.$router.push('/login')
+        this.$router.push("/login");
         console.log(error, "error from decoding token");
       }
     },
+
+    loginForm: function() {},
   },
   created() {
     this.getUserDetails();
