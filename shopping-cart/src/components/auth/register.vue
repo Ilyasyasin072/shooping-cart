@@ -7,9 +7,7 @@
         <div class="card">
           <div class="card-body">
             <h3 class="text-center mt-3 mb-3 fw-bold text-muted">Login</h3>
-
             <form-register-view></form-register-view>
-            <h3 class="text-center mt-3 mb-3 fw-bold text-muted">Daftar</h3>
           </div>
         </div>
       </div>

@@ -41,20 +41,25 @@
         <ul class="navbar-nav ms-auto" v-if="userLogin">
           <li class="nav-item dropdown">
             <a
-               class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
               >user</a
             >
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <a class="dropdown-item" @click="cart">
-                 Keranjang
+                  Keranjang
                   <span class="badge bg-primary text-light">0</span>
+                </a>
+              </li>
+               <li>
+                <a class="dropdown-item" @click="profile">
+                  Profile
                 </a>
               </li>
               <li>
@@ -63,12 +68,12 @@
             </ul>
           </li>
         </ul>
-         <ul class="navbar-nav ms-auto" v-else>
-          <li class="nav-item">
-            <router-link to="/register" class="nav-link">Register</router-link>
-          </li>
+        <ul class="navbar-nav ms-auto" v-else>
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link">Register</router-link>
           </li>
         </ul>
       </div>

@@ -91,7 +91,7 @@ export default {
         password: null,
         first_name: null,
         last_name: null,
-        telephone: '022-xxx-xxx',
+        telephone: null,
       },
       userLogin: null,
     };
