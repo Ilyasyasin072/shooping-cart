@@ -2,6 +2,7 @@ import userApi from '../../../api/user/user';
 
 const state = {
     userLogin: null,
+    users: []
 }
 
 const getters = {

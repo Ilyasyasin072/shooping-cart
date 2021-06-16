@@ -58,7 +58,7 @@
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Keluar</a>
+                <a class="dropdown-item" @click="logout">Keluar</a>
               </li>
             </ul>
           </li>

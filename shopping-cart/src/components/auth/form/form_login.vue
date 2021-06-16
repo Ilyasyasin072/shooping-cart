@@ -2,8 +2,8 @@
   <div>
     <b-form-group
       id="fieldset-1"
-      description="Let us know your name."
-      label="Enter your name"
+      description="example@mail.com"
+      label="Email"
       label-for="input-1"
     >
       <b-form-input id="input-1" v-model="formLogin.email" trim></b-form-input>
@@ -11,17 +11,18 @@
 
     <b-form-group
       id="fieldset-1"
-      description="Let us know your name."
-      label="Enter your name"
+      description="********"
+      label="Password"
     >
       <b-form-input
         id="input-1"
+        type="password"
         v-model="formLogin.password"
         trim
       ></b-form-input>
     </b-form-group>
 
-    <b-button type="submit" variant="primary" @click="loginData"
+    <b-button type="submit" variant="dark" @click="loginData" class="w-100 mt-3"
       >Submit</b-button
     >
   </div>
