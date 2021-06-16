@@ -3,7 +3,7 @@
       <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="Username"
       label-for="input-1"
     >
       <b-form-input
@@ -15,7 +15,7 @@
     <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="Email"
       label-for="input-1"
     >
       <b-form-input
@@ -28,7 +28,7 @@
     <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="Password"
     >
       <b-form-input
         id="input-1"
@@ -40,7 +40,7 @@
     <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="First Name"
     >
       <b-form-input
         id="input-1"
@@ -52,7 +52,7 @@
     <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="Last Name"
     >
       <b-form-input
         id="input-1"
@@ -64,7 +64,7 @@
     <b-form-group
       id="fieldset-1"
       description="Let us know your name."
-      label="Enter your name"
+      label="Phone"
     >
       <b-form-input
         id="input-1"
@@ -73,10 +73,8 @@
       ></b-form-input>
     </b-form-group>
 
-    <b-button type="submit" variant="primary" @click="RegisterData"
+    <b-button type="submit" class="w-100 mt-3" variant="dark" @click="RegisterData"
       >Register</b-button
-    >
-    <b-button type="submit" variant="primary"><router-link to="login">login</router-link></b-button
     >
   </div>
 </template>
