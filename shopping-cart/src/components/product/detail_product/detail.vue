@@ -138,11 +138,11 @@
       </div>
     </div>
     <hr>
-    <div class="row">
-      <div class="col" v-for="item in product" :key="item._id">
-        <ProductListItem :product="item" />.
-      </div>
-    </div>
+     <b-row>
+      <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
+        <ProductListItem :product="item" />
+      </b-col>
+    </b-row>
   </div>
 </template>
 

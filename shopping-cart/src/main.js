@@ -20,7 +20,7 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(VueJwtDecode)
 Vue.use(VueSimpleAlert);
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true, scrollable: true })
 
 Vue.config.productionTip = false
 

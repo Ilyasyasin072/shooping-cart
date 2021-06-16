@@ -1,11 +1,11 @@
 <template>
-  <div class="CartList">
-    <div class="container mt-5">
-      <form class="form-inline">
-        <div class="form-group mb-2">
-          <h5>Shopping Cart</h5>
-        </div>
-      </form>
+  <div class="container mt-5">
+    <form class="form-inline">
+      <div class="form-group mb-2">
+        <h5>Shopping Cart</h5>
+      </div>
+    </form>
+    <div v-if="cartItems.products.length">
       <div
         class="row mb-5"
         v-for="product_item in cartItems.products"
@@ -86,45 +86,85 @@
           Checkout
         </button>
       </div>
-
-      <modal name="order-data" :width="500" :height="500">
-        <div class="container">
-          <div class="row mt-3">
-            <ul v-for="check in checkout_data" :key="check._id">
-              <div class="col" v-if="checkout_data.length > 0 ">
-                <div v-for="product_ in product" :key="product_._id">
-                  <li v-if="product_._id == check.productId">
-                    <img
-                      :src="product_.product_inventories.image_product"
-                      class="ml-5 img-fluid"
-                      width="150px"
-                      alt="Generic placeholder image"
-                    />
-                  </li>
-                </div>
-              </div>
-              <div v-else>
-                Check Order First !!
-              </div>
-            </ul>
+    </div>
+    <div v-else>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="text-center">
+                Upps Keranjang Anda Kosong
+              </h1>
+              <button @click="dashboard_" class="btn btn-dark text-light">
+                Belaja ..
+              </button>
+            </div>
           </div>
         </div>
-      </modal>
+      </div>
     </div>
+
+    <modal name="order-data" :min-width="200"
+    :min-height="200"
+    :scrollable="true"
+    :reset="true"
+    width="60%"
+    height="auto">
+      <SendingView class="modal-checkout" :checkout_data="checkout_data" :product="product" />
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="dropdown mt-3">
+              <b-form-select
+                v-model="selected"
+                :options="options"
+              ></b-form-select>
+              <div class="mt-3">
+                Selected: <strong>{{ selected }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-3 p-3">
+        <button class="btn btn-dark text-light" @click="order">Beli ..</button>
+      </div>
+    </modal>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { authHeader } from "../../utils/common";
+import SendingView from "./sending/sending.vue";
 export default {
   name: "CartList",
   data() {
     return {
       checkout_data: [],
       showButton: false,
+      selected: null,
+      options: [
+        { value: null, text: "Please select an option" },
+        { value: "a", text: "This is First option" },
+        { value: "b", text: "Selected Option", disabled: true },
+        {
+          label: "Grouped options",
+          options: [
+            { value: { C: "3PO" }, text: "Option with object value" },
+            { value: { R: "2D2" }, text: "Another option with object value" },
+          ],
+        },
+      ],
     };
   },
-  components: {},
+  components: {
+    SendingView,
+  },
   computed: {
     ...mapGetters({
       cartItems: "cartItems",
@@ -132,22 +172,31 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["getStoreCart", "removeCart", "addCheckout"]),
+    ...mapActions(["getStoreCart", "removeCart", "addCheckout", "getProduct"]),
     cart: function() {
       const token = authHeader().Authorization;
       this.getStoreCart(token);
+    },
+    productGet: function() {
+      this.getProduct();
     },
     remove: function(productId) {
       this.removeCart({ productId: productId });
     },
     checkout: function() {
-      console.log(this.checkout_data);
       this.$modal.show("order-data");
     },
     order: function() {
       this.addCheckout(this.checkout_data);
-      this.$router.push("/cart/user");
-      this.$modal.hide("order-data");
+      this.$fire({
+        title: "Success " + this.product_detail.product_inventories.name,
+        text: "text",
+        type: "success",
+        timer: 1000,
+      }).then(() => {});
+      setTimeout(() => {
+        this.$router.go();
+      }, 500);
     },
     changeAge: function(item, event) {
       if (event.target.checked === false) {
@@ -155,7 +204,7 @@ export default {
         const check = this.checkout_data;
         check.forEach((item, index) => {
           if (item._id === item._id) {
-            this.checkout_data.splice(index, 1);
+            this.checkout_data.splice(index, index);
             // this.showButton = false;
           }
         });
@@ -164,11 +213,28 @@ export default {
         this.checkout_data.push(item);
       }
     },
+    dashboard_: function() {
+      this.$router.push("/");
+    },
+  },
+
+  watch: {
+    $route() {
+      this.cart();
+      this.productGet();
+    },
   },
 
   mounted() {
-    // setInterval(() => , 3000);
     this.cart();
+    this.productGet();
   },
 };
 </script>
+
+
+<style>
+  .modal-checkout {
+  overflow: true;
+}
+</style>

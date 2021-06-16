@@ -52,7 +52,7 @@
             >
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" href="#" @click="cart">
+                <a class="dropdown-item" @click="cart">
                  Keranjang
                   <span class="badge bg-primary text-light">0</span>
                 </a>
