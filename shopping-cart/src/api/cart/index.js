@@ -46,9 +46,13 @@ function addCart(data, cb) {
 }
 
 function addCheckout(data, cb) {
+    console.log(data.data, data.payment)
     const token = authHeader().Authorization
-    for (let i = 0; i < data.length; i++) {
-        api.post('/user/order-cart/create', data[i], {
+    for (let i = 0; i < data.data.length; i++) {
+        api.post('/user/order-cart/create', {
+            productId :  data.data[i],
+            payment_id : data.payment
+        }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token

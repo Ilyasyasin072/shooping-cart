@@ -305,7 +305,10 @@ export default {
       this.$modal.show("order-data");
     },
     order: function() {
-      this.addCheckout(this.checkout_data);
+      console.log(this.selected)
+      this.addCheckout({
+        data: this.checkout_data,
+        payment: this.selected});
       this.$fire({
         title: "Success " + this.product_detail.product_inventories.name,
         text: "text",
