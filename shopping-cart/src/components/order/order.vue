@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h3 class="dark">Order Detail Data</h3>
+            <h3 class="dark">Order Detail</h3>
             <ul v-for="data in order" :key="data._id">
               <!-- <li>{{ data }}</li> -->
               <ul
