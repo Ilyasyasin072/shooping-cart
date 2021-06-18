@@ -5,34 +5,44 @@ const mongoose = require('mongoose')
 class OrderItemClass {
 
     index = async (req, res) => {
-        // const order_detail = await OrderDetail.find({
 
-        // })
-        // const order_item = await OrderItem.find({
-        // })
-        // res.json({
-        //     'order': order_item,
-        //     order_deatail : order_detail
-        // })
-        const ObjectId = mongoose.Types.ObjectId;
+        if(req.user) {
 
-        var aggregateQuery = OrderDetail.aggregate([
-            {
-                $match: { user_id: ObjectId('60bf13f65849505c878b7256') }
-            },
-            {
-                $lookup: {
-                    from: 'order_items',
-                    localField: '_id',
-                    foreignField: 'order_id', as: 'order_items'
-                },
-            },
+            try {
+                const ObjectId = mongoose.Types.ObjectId;
+    
+                var aggregateQuery = OrderDetail.aggregate([
+                    {
+                        $match: { user_id: ObjectId(req.user._id) }
+                    },
+                    {
+                        $lookup: {
+                            from: 'order_items',
+                            localField: '_id',
+                            foreignField: 'order_id', as: 'order_items'
+                        },
+                    },
+    
+                ])
+    
+                aggregateQuery.exec(function (err, result) {
+                    if (result != '') {
+                        res.json(result);
+                    } else {
+                        res.json({
+                            empty: 'empty'
+                        });
+                    }
+                })
+            } catch (error) {
+                res.json(error.message)
+            }
 
-        ])
-
-        aggregateQuery.exec(function (err, result) {
-            res.json(result);
-        })
+        } else {
+            res.json({
+                'status': 'invalid credentials'
+            })
+        }
 
     }
 }

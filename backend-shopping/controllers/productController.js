@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 const index = async (req, res) => {
 
+ try {
     var aggregateQuery = Product.aggregate([
 
         {
@@ -50,6 +51,13 @@ const index = async (req, res) => {
         const data = new ApiResponser('GET', result, 200)
         res.json(data.data);
     })
+     
+ } catch (error) {
+     res.json({
+         'error': error.message
+     })
+ }
+    
 
     // const product = await Product.find({})
     // const data = new ApiResponser('GET', product, 200);
