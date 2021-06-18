@@ -5,14 +5,14 @@
         <div class="card">
           <div class="card-body">
             <h3 class="dark">Order Detail</h3>
-            <ul v-for="data in order" :key="data._id">
+            <div v-for="data in order" :key="data._id">
               <!-- <li>{{ data }}</li> -->
-              <ul
+              <div
                 v-for="data_detail in data.order_items"
                 :key="data_detail._id"
               >
                 <!-- <li>{{ data_detail }}</li> -->
-                <ul
+                <div
                   v-for="cart_data in data_detail.cart_items"
                   :key="cart_data._id"
                 >
@@ -21,15 +21,15 @@
                             <!-- <p>
                       {{ product.product_inventories.image_detail[0] }}
                     </p> -->
-                      <div class="row">
-                        <div class="col-4">
+                      <div class="row mt-3">
+                        <div class="col-md-4 col-xs-12">
                           <img
                             :src="product.product_inventories.image_product"
                             class="img-fluid"
-                            width="300"
+                            style="max-width: 21rem;"
                           />
                         </div>
-                        <div class="col-8">
+                        <div class="col-md-8 col-xs-12">
                           <div class="card">
                             <div class="card-body">
                               <h4>
@@ -55,9 +55,9 @@
                       </div>
                     </div>
                   </div>
-                </ul>
-              </ul>
-            </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -43,6 +43,7 @@ export default {
           path: '/product/detail',
           query: { _id: id } 
         });
+        window.scrollTo(0,0);
     }
   },
 };

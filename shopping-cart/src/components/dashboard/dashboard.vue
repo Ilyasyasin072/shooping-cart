@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
       <banner-list-view></banner-list-view>
-    <div style="margin-top: 20px;">
+    <div class="mt-2">
       <product-list-view></product-list-view>
     </div>
   </div>
