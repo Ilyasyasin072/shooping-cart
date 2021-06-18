@@ -209,7 +209,9 @@ const order = async (req, res) => {
 
   const ObjectId = mongoose.Types.ObjectId;
 
-  const { productId } = req.body;
+  const { productId, payment_id } = req.body;
+
+  console.log(productId.productId)
 
   if (req.user) {
 
@@ -217,7 +219,7 @@ const order = async (req, res) => {
 
     let cart = await Cart.findOne({ user_id: userId });
 
-    let itemIndex = cart.products.findIndex(p => p.productId == productId);
+    let itemIndex = cart.products.findIndex(p => p.productId == productId.productId);
     let productItem = cart.products[itemIndex];
    
 
@@ -230,7 +232,7 @@ const order = async (req, res) => {
     const order_detail = await OrderDetail.create({
       user_id: ObjectId(userId),
       total: totalSum,
-      payment_id: 1
+      payment_id: payment_id
     })
     console.log(productItem._id)
     // productItem.filter(cart => {

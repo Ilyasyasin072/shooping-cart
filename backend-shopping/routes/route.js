@@ -14,6 +14,7 @@ const userAddressController = require('../controllers/userAddressController');
 const userPaymentController = require('../controllers/userPaymentController');
 const authController = require('../controllers/authController');
 const phoneController = require('../controllers/phoneController')
+const orderController = require('../controllers/orderController')
 router.group('/v1', (router) => {
 
     router.group('/auth', (router) => {
@@ -48,6 +49,7 @@ router.group('/v1', (router) => {
 
         router.group('/order-cart', (router) => {
             router.post('/create', cart.order)
+            router.get('/detail', orderController.index)
         })
     })
 
