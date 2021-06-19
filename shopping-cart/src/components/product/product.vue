@@ -12,7 +12,7 @@
     </b-row>
     <b-row>
       <b-col
-        lg="4"
+        lg="3"
         md="6"
         xs="12"
         v-for="(item) in filterProduct"
