@@ -1,6 +1,6 @@
 <template>
 
-  <div class="nav navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="nav navbar navbar-expand-lg navbar-dark bg-dark text-light">
     <div class="container">
       <button
         class="navbar-toggler"
@@ -28,8 +28,8 @@
         <ul class="navbar-nav ms-auto" v-if="userLogin">
          <li class="nav-item">
             <a class="nav-link">
-              <span class="badge bg-success text-light" @click="cart">
-                {{ cartItems.products.length }}
+              <span class="text-light" @click="cart">
+                Cart ({{ cartItems.products.length }})
               </span>
             </a>
           </li>
