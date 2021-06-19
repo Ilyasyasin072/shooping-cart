@@ -1,17 +1,4 @@
 <template>
-  <!-- <b-navbar-nav v-if="userLogin">
-      <b-nav-item @click="cart">Cart (0)</b-nav-item>
-      <b-nav-item @click="logout">Logout</b-nav-item>
-      <b-nav-item @click="profile">Profile </b-nav-item>
-    </b-navbar-nav>
-    <b-navbar-nav v-else>
-      <b-nav-item>
-        <router-link to="/login">Login</router-link>
-      </b-nav-item>
-      <b-nav-item>
-        <router-link to="/register">Register</router-link>
-      </b-nav-item>
-    </b-navbar-nav> -->
 
   <div class="nav navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -27,7 +14,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Dashboard</router-link>
           </li>
@@ -39,6 +26,13 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto" v-if="userLogin">
+         <li class="nav-item">
+            <a class="nav-link">
+              <span class="badge bg-success text-light" @click="cart">
+                {{ cartItems.products.length }}
+              </span>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -50,14 +44,14 @@
               aria-expanded="false"
               >user</a
             >
+
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <a class="dropdown-item" @click="cart">
                   Keranjang
-                  <span class="badge bg-primary text-light">0</span>
                 </a>
               </li>
-               <li>
+              <li>
                 <a class="dropdown-item" @click="profile">
                   Profile
                 </a>
@@ -83,6 +77,7 @@
 
 <script>
 import { removeSession, authHeader } from "../../utils/common";
+import { mapGetters } from "vuex";
 export default {
   name: "NavbarItem",
   data() {
@@ -93,6 +88,9 @@ export default {
   mounted() {
     this.userLogin = authHeader().Authorization;
   },
+  computed: mapGetters({
+    cartItems: "cartItems",
+  }),
   methods: {
     logout() {
       removeSession();

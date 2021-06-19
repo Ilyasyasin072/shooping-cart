@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 import 'vue-js-modal/dist/styles.css'
+import '../public/css/custome.css'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

@@ -1,30 +1,33 @@
 <template>
   <div class="container">
     <div class="row mt-5 mb-5">
-      <div class="col-md-6">
-            <img
+      <div class="col-md-3 col-lg-3 col-xs-12 detail">
+        <img
           :title="product_detail.product_inventories.name"
           :src="product_detail.product_inventories.image_product"
           img-alt="Image"
           img-top
           tag=""
-          style="max-width: 30rem;"
-          class="mb-2 text-center"
+          class="mb-2 text-center img-detail"
         />
         <div class="row mt-3">
-          <div class="col-3" v-for="img_detail in product_detail.product_inventories.image_detail" :key="img_detail._id">
-             <img
-          :src="img_detail.url"
-          img-alt="Image"
-          img-top
-          tag="T-shirt"
-          style="max-width:5rem;"
-          class="mb-2"
-        />
+          <div
+            class="col-xs-3 col-lg-3 col-md-3"
+            v-for="img_detail in product_detail.product_inventories
+              .image_detail"
+            :key="img_detail._id"
+          >
+            <img
+              :src="img_detail.url"
+              img-alt="Image"
+              img-top
+              tag="T-shirt"
+              class="img-gallery"
+            />
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-lg-6 col-xs-12">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -37,20 +40,34 @@
                 >T-Shirt</router-link
               >
             </li>
-            <li class="breadcrumb-item active" aria-current="page">{{ product_detail.product_categories.name }}</li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{ product_detail.product_categories.name }}
+            </li>
           </ol>
         </nav>
-        <h1 class="text-muted fw-bold">{{ product_detail.product_inventories.name }}</h1>
+        <h1 class="text-muted fw-bold">
+          {{ product_detail.product_inventories.name }}
+        </h1>
         <hr />
         <h3>{{ product_detail.price }}</h3>
         <div class="row mt-3">
-          <div class="col-md-5 col-2">
+          <div class="col-md-12 col-lg-12 col-xs-12">
             <p class="fw-bold pt-2">Size (XS, M, XL, XXL)</p>
-            <p class="fw-bold pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, nesciunt excepturi minima voluptatum saepe commodi vitae nobis ea perspiciatis maiores? Nam, corrupti. Doloribus, amet? Illum sapiente error deleniti facere ipsum?</p>
+            <p class="fw-bold pt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
+              nesciunt excepturi minima voluptatum saepe commodi vitae nobis ea
+              perspiciatis maiores? Nam, corrupti. Doloribus, amet? Illum
+              sapiente error deleniti facere ipsum?
+            </p>
           </div>
           <div class="row mt-5">
             <div class="col-md-7 col-7">
-              <button class="btn btn-dark" @click="addCartItem(product_detail._id, product_detail.price)">Add To Cart</button>
+              <button
+                class="btn btn-dark"
+                @click="addCartItem(product_detail._id, product_detail.price)"
+              >
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>
@@ -137,8 +154,8 @@
         </div>
       </div>
     </div>
-    <hr>
-     <b-row>
+    <hr />
+    <b-row>
       <b-col lg="4" md="6" xs="12" v-for="item in product" :key="item.id">
         <ProductListItem :product="item" />
       </b-col>
@@ -171,10 +188,12 @@ export default {
   }),
   update() {
     this.getIdProduct();
+
+      this.productGetData();
   },
   mounted() {
     this.getIdProduct();
-
+      this.productGetData();
     // setInterval(() => {
     //   this.$store.dispatch("getProduct");
     // }, 2000);
@@ -182,14 +201,19 @@ export default {
   watch: {
     $route() {
       this.getIdProduct();
+      this.productGetData();
     },
   },
   methods: {
-    ...mapActions(["getProductDetail", "addCart"]),
+    ...mapActions(["getProductDetail", "addCart", "getProduct"]),
     getIdProduct: function() {
       this.id = this.$route.query._id;
       const data = this.id;
       this.getProductDetail(data);
+    },
+
+    productGetData() {
+      this.getProduct()
     },
 
     addCartItem: function(productId, price) {
@@ -216,3 +240,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

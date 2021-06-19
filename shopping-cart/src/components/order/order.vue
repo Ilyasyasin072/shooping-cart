@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h3 class="dark">Order Detail</h3>
-            <div v-for="data in order" :key="data._id">
+            <div class="order-content" v-for="data in order" :key="data._id">
               <!-- <li>{{ data }}</li> -->
               <div
                 v-for="data_detail in data.order_items"
@@ -17,41 +17,37 @@
                   :key="cart_data._id"
                 >
                   <div v-for="product in products" :key="product._id">
-                    <div v-if="product._id === cart_data.productId">
-                            <!-- <p>
+                    <!-- <p>
                       {{ product.product_inventories.image_detail[0] }}
                     </p> -->
-                      <div class="row mt-3">
-                        <div class="col-md-4 col-xs-12">
-                          <img
-                            :src="product.product_inventories.image_product"
-                            class="img-fluid"
-                            style="max-width: 21rem;"
-                          />
-                        </div>
-                        <div class="col-md-8 col-xs-12">
-                          <div class="card">
-                            <div class="card-body">
-                              <h4>
-                                {{ product.product_inventories.name }}
-                              </h4>
-                            </div>
-                          </div>
-                          <ul class="mt-3">
-                            <li>
-                              {{ product.product_categories.name }}
-                            </li>
-                            <li class="mt-3">
-                                 {{ product.product_inventories.name }}
-                                 <ul class="mt-3">
-                                   <li>
-                                      {{ product.product_inventories.image_detail[0].title }}
-                                   </li>
-                                 </ul>
-                            </li>
-                            <li class="mt-3">{{ data.total }} </li>
-                          </ul>
-                        </div>
+                    <div
+                      class="row mt-3"
+                      v-if="product._id === cart_data.productId"
+                    >
+                      <div class="col-md-4 col-lg-4 col-xs-12">
+                        <img
+                          :src="product.product_inventories.image_product"
+                          class="img-fluid order-img"
+                        />
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-xs-12">
+                        <ul class="mt-3">
+                          <li>
+                            {{ product.product_categories.name }}
+                          </li>
+                          <li class="mt-3">
+                            {{ product.product_inventories.name }}
+                            <ul class="mt-3">
+                              <li>
+                                {{
+                                  product.product_inventories.image_detail[0]
+                                    .title
+                                }}
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="mt-3">{{ data.total }}</li>
+                        </ul>
                       </div>
                     </div>
                   </div>

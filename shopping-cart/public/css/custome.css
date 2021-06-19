@@ -1,0 +1,155 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+  .img-detail {
+    max-width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .img-gallery {
+    max-width: 100%;
+  }
+  .order-content {
+    background-color: blue;
+    color: white;
+  }
+  .order-img {
+    max-width: 50%;
+  }
+  .detail {
+    background-color: blue;
+    color: white;
+  }
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .img-detail {
+    max-width: 100%;
+  }
+  .img-gallery {
+    max-width: 100%;
+  }
+  .order-content {
+    background-color: yellow;
+    color: white;
+  }
+  /* CSS */
+  .detail {
+    background-color: yellow;
+    color: white;
+  }
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+  .img-detail {
+    max-width: 100%;
+  }
+  .order-content {
+    background-color: green;
+    color: white;
+  }
+  .img-gallery {
+    max-width: 50px;
+  }
+  .detail {
+    background-color: green;
+    color: white;
+  }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .img-detail {
+    max-width: 100%;
+  }
+  .order-content {
+    background-color: black;
+    color: white;
+  }
+  .order-img {
+    max-width: 100%;
+  }
+  .img-gallery {
+    max-width: 10%;
+  }
+  .detail {
+    background-color: black;
+    color: white;
+  }
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .img-detail {
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .order-content {
+    background-color: red;
+    color: white;
+  }
+  .order-img {
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .img-gallery {
+    display: none
+  }
+  .detail {
+    background-color: red;
+    color: white;
+  }
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .img-detail {
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+   .order-content {
+    background-color: pink;
+    color: white;
+  }
+  .img-gallery {
+    display: none
+  }
+  .detail {
+    background-color: pink;
+    color: white;
+  }
+}
