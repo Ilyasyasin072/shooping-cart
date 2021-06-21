@@ -30,7 +30,7 @@ const router = new VueRouter({
       name: 'cart',
       path: '/cart/user',
       component: Cart,
-      props : true,
+      props: true,
       meta: {
         requiresAuth: true
       }
@@ -73,7 +73,7 @@ const router = new VueRouter({
       name: 'dashboard',
       path: '/',
       component: Dashboard,
-     
+
     },
     { path: '*', redirect: '/' }
   ]

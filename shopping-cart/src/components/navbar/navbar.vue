@@ -1,11 +1,11 @@
 <template>
-  <nav class="bg-dark text-center pt-4 pb-3">
+  <nav class="bg-body text-center pt-4 fixed-top">
     <div class="container">
-      <h3 class="my-cloth-name text-light">
-        Cloth <strong>BajuBanget</strong>
-      </h3>
+      <div class="navbar-brand fw-bold">
+        IL<span class="text-muted">CLOTH</span>
+      </div>
     </div>
-    <NavBarItem/>
+    <NavBarItem />
   </nav>
 </template>
 
@@ -34,12 +34,12 @@ export default {
         // return error in production env
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        this.$router.push("/login");
+        this.$router.push("/");
         console.log(error, "error from decoding token");
       }
     },
 
-    loginForm: function() {},
+    loginForm: function () {},
   },
   created() {
     this.getUserDetails();

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <ProductCategory/>
+    <ProductCategory />
     <b-row>
       <b-col>
         <input
@@ -14,7 +14,7 @@
 
     <hr />
     <b-row>
-      <b-col lg="2" md="6" xs="12" v-for="item in filterProduct" :key="item.id">
+      <b-col lg="2" md="3" xs="12" v-for="item in filterProduct" :key="item.id">
         <ProductListItem :product="item" />
       </b-col>
     </b-row>
@@ -24,7 +24,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Product_List_Item from "./product_list";
-import Product_Category from './category/product_category.vue'
+import Product_Category from "./category/product_category.vue";
 export default {
   name: "ProductList",
   data() {
@@ -36,11 +36,11 @@ export default {
 
   components: {
     ProductListItem: Product_List_Item,
-    ProductCategory : Product_Category
+    ProductCategory: Product_Category,
   },
 
   computed: {
-    filterProduct: function() {
+    filterProduct: function () {
       var self = this;
       return self.product.filter((item) => {
         if (self.search) {

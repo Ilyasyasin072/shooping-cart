@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper mt-5 pt-5">
     <splide :options="options" :slides="slides">
       <splide-slide v-for="slide in slides" :key="slide.src">
-        <img :src="slide.src" alt="slide.alt" />
+        <img :src="slide.src" alt="slide.alt" class="w-100" />
       </splide-slide>
     </splide>
   </div>
@@ -22,9 +22,9 @@ export default {
     return {
       options: {
         rewind: true,
-        // perPage: 1,
+        perPage: 1,
         gap: "1rem",
-        autoWidth: true,
+        // autoWidth: true,
         autoplay: true,
         pauseOnHover: false,
         arrows: "slider",

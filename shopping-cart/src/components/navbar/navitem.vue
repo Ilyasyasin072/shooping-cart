@@ -1,6 +1,13 @@
 <template>
-
-  <div class="nav navbar navbar-expand-lg navbar-dark bg-dark text-light">
+  <div
+    class="
+      nav
+      navbar navbar-expand-lg navbar-light
+      bg-body
+      text-light
+      shadow-sm
+    "
+  >
     <div class="container">
       <button
         class="navbar-toggler"
@@ -13,6 +20,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -26,35 +34,23 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto" v-if="userLogin">
-         <li class="nav-item">
-            <a class="nav-link">
-              <span class="text-light" @click="cart">
-                Cart ({{ cartItems.products.length }})
-              </span>
-            </a>
-          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
+              data-bs-toggle="dropdown"
               aria-expanded="false"
               >user</a
             >
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" @click="cart">
-                  Keranjang
-                </a>
+                <a class="dropdown-item" @click="cart"> Keranjang </a>
               </li>
               <li>
-                <a class="dropdown-item" @click="profile">
-                  Profile
-                </a>
+                <a class="dropdown-item" @click="profile"> Profile </a>
               </li>
               <li>
                 <a class="dropdown-item" @click="logout">Keluar</a>

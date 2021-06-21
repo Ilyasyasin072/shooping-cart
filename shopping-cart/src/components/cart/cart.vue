@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 pt-5">
     <form class="form-inline">
       <div class="form-group mb-2">
         <h5>Shopping Cart</h5>
@@ -50,7 +50,7 @@
                     <li class="list-group-item">
                       <h5>
                         Category
-                        <span class="badge badge-success">{{
+                        <span class="badge bg-success">{{
                           product_.product_categories.desc
                         }}</span>
                       </h5>
@@ -58,7 +58,7 @@
                     <li class="list-group-item">
                       <h5>
                         Stock :
-                        <span class="badge badge-success">{{
+                        <span class="badge bg-success">{{
                           product_.product_inventories.quantity
                         }}</span>
                       </h5>
@@ -92,9 +92,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h1 class="text-center">
-                Upps Keranjang Anda Kosong
-              </h1>
+              <h1 class="text-center">Upps Keranjang Anda Kosong</h1>
               <button @click="dashboard_" class="btn btn-dark text-light">
                 Belaja ..
               </button>
@@ -196,9 +194,8 @@
           </div>
         </div>
         <div class="row">
-
-            <div class="col">
-               <div v-for="user_detail in user.address" :key="user_detail._id">
+          <div class="col">
+            <div v-for="user_detail in user.address" :key="user_detail._id">
               <div class="form-group">
                 <label for="inputAddress">Address</label>
                 <input
@@ -222,21 +219,35 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">City</label>
-                  <input type="text" class="form-control" id="inputCity"  v-model="user_detail.city" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputCity"
+                    v-model="user_detail.city"
+                  />
                 </div>
                 <div class="form-group col-md-2">
                   <label for="inputZip">Zip</label>
-                  <input type="text" class="form-control" id="inputZip"  v-model="user_detail.zipCode" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputZip"
+                    v-model="user_detail.zipCode"
+                  />
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="inputState">phone</label>
-                 <input type="text" class="form-control" id="inputCity"  v-model="user_detail.mobile" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputCity"
+                    v-model="user_detail.mobile"
+                  />
                 </div>
               </div>
             </div>
-
-            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col"></div>
@@ -291,24 +302,25 @@ export default {
       "getProduct",
       "getUserProfileAction",
     ]),
-    cart: function() {
+    cart: function () {
       const token = authHeader().Authorization;
       this.getStoreCart(token);
     },
-    productGet: function() {
+    productGet: function () {
       this.getProduct();
     },
-    remove: function(productId) {
+    remove: function (productId) {
       this.removeCart({ productId: productId });
     },
-    checkout: function() {
+    checkout: function () {
       this.$modal.show("order-data");
     },
-    order: function() {
-      console.log(this.selected)
+    order: function () {
+      console.log(this.selected);
       this.addCheckout({
         data: this.checkout_data,
-        payment: this.selected});
+        payment: this.selected,
+      });
       this.$fire({
         title: "Success " + this.product_detail.product_inventories.name,
         text: "text",
@@ -319,7 +331,7 @@ export default {
         this.$router.go();
       }, 500);
     },
-    changeAge: function(item, event) {
+    changeAge: function (item, event) {
       if (event.target.checked == false) {
         console.log(this);
         // var tokenToRemove;
@@ -333,7 +345,7 @@ export default {
         this.checkout_data.push(item);
       }
     },
-    dashboard_: function() {
+    dashboard_: function () {
       this.$router.push("/");
     },
   },

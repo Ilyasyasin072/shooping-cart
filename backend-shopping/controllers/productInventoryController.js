@@ -10,7 +10,7 @@ const index = async (req, res) => {
         const data = new ApiResponser('GET', customer, 200);
 
         res.json(data.data)
-    
+
     } catch (error) {
 
         const err = new ApiResponser('GET', error.message, 200);
@@ -31,7 +31,6 @@ const store = async (req, res) => {
         }],
         size_product: [{
             size: req.body.size,
-            quantity: req.body.quantity,
         }]
     }
 
