@@ -13,35 +13,71 @@
       >
         <div class="col">
           <div v-for="product_ in product" :key="product_._id">
-            <div class="card" v-if="product_._id == product_item.productId">
+            <div v-if="product_._id == product_item.productId">
               <div class="row">
-                <div class="col-3">
-                  <input
-                    type="checkbox"
+                 <div class="row col-lg-8 col-md-8 mx-auto">
+                    <input   type="checkbox"
+                    class="form-check-input"
                     :value="product_item._id"
-                    @change="changeAge(product_item, $event)"
-                  />
-                  <div class="card-body">
-                    <img
-                      :src="product_.product_inventories.image_product"
-                      class="ml-5 img-fluid"
-                      width="150px"
-                      alt="Generic placeholder image"
-                    />
-                  </div>
+                    @change="changeAge(product_item, $event)">
+                  <ul class="list-group">
+                    <!-- list group item-->
+                    <li class="list-group-item">
+                      <!-- Custom content-->
+                      <div
+                        class="media align-items-lg-center flex-column flex-lg-row p-3"
+                      >
+                        <div class="media-body order-2 order-lg-1">
+                          <h5 class="mt-0 font-weight-bold mb-2">
+                            Awesome product
+                          </h5>
+                          <p class="font-italic text-muted mb-0 small">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Suscipit fuga autem maiores necessitatibus.
+                          </p>
+                          <div
+                            class="d-flex align-items-center justify-content-between mt-1"
+                          >
+                            <h6 class="font-weight-bold my-2">
+                              $120.00
+                            </h6>
+                            <ul class="list-inline small">
+                              <li class="list-inline-item m-0">
+                                <i class="fa fa-star text-success"></i>
+                              </li>
+                              <li class="list-inline-item m-0">
+                                <i class="fa fa-star text-success"></i>
+                              </li>
+                              <li class="list-inline-item m-0">
+                                <i class="fa fa-star text-success"></i>
+                              </li>
+                              <li class="list-inline-item m-0">
+                                <i class="fa fa-star text-success"></i>
+                              </li>
+                              <li class="list-inline-item m-0">
+                                <i class="fa fa-star-o text-gray"></i>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <img
+                          :src="product_.product_inventories.image_product"
+                          width="200"
+                          class="ml-lg-5 order-1 order-lg-2"
+                          alt="Generic placeholder image"
+                        />
+                      </div>
+                      <!-- End -->
+                    </li>
+                    <!-- End -->
+                  </ul>
                 </div>
-                <div class="col">
+                <div class="col col-lg-4">
                   <ul class="list-group list-group-flush">
                     <div class="text-end">
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-label="Close"
-                        @click="remove(product_item._id)"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" 
+                        @click="remove(product_item._id)"></button>
+                     
                       &nbsp;
                     </div>
                     <li class="list-group-item">
@@ -50,9 +86,9 @@
                     <li class="list-group-item">
                       <h5>
                         Category
-                        <span class="badge bg-success">{{
+                        <small class="text-muted">{{
                           product_.product_categories.desc
-                        }}</span>
+                        }}</small>
                       </h5>
                     </li>
                     <li class="list-group-item">
@@ -302,20 +338,20 @@ export default {
       "getProduct",
       "getUserProfileAction",
     ]),
-    cart: function () {
+    cart: function() {
       const token = authHeader().Authorization;
       this.getStoreCart(token);
     },
-    productGet: function () {
+    productGet: function() {
       this.getProduct();
     },
-    remove: function (productId) {
+    remove: function(productId) {
       this.removeCart({ productId: productId });
     },
-    checkout: function () {
+    checkout: function() {
       this.$modal.show("order-data");
     },
-    order: function () {
+    order: function() {
       console.log(this.selected);
       this.addCheckout({
         data: this.checkout_data,
@@ -331,7 +367,7 @@ export default {
         this.$router.go();
       }, 500);
     },
-    changeAge: function (item, event) {
+    changeAge: function(item, event) {
       if (event.target.checked == false) {
         console.log(this);
         // var tokenToRemove;
@@ -345,7 +381,7 @@ export default {
         this.checkout_data.push(item);
       }
     },
-    dashboard_: function () {
+    dashboard_: function() {
       this.$router.push("/");
     },
   },

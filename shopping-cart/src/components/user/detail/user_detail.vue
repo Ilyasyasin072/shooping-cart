@@ -1,5 +1,6 @@
 <template>
-  <b-row>
+ <div class="container mt-5 pt-5">
+    <b-row>
     <b-col cols="6">
       <div class="clearfix">
         <b-img
@@ -51,6 +52,7 @@
       </b-tabs>
     </b-col>
   </b-row>
+ </div>
 </template>
 
 <script>

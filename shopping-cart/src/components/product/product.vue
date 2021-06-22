@@ -14,7 +14,7 @@
 
     <hr />
     <b-row>
-      <b-col lg="2" md="3" xs="12" v-for="item in filterProduct" :key="item.id">
+      <b-col lg="3" md="3" xs="12" v-for="item in filterProduct" :key="item._id">
         <ProductListItem :product="item" />
       </b-col>
     </b-row>

@@ -85,19 +85,19 @@ export default {
           title_second: "Pria",
         },
         {
-          id: 6,
+          id: 7,
           url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Hijab",
           title_second: "Wanita",
         },
         {
-          id: 5,
+          id: 8,
           url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Baby",
         },
         {
-          id: 6,
+          id: 9,
           url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Wanita",
