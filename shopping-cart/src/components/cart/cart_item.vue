@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-if="cartItems.products">
     <b-list-group
       v-for="product_item in cartItems.products"
       :key="product_item._id"
     >
-      <b-row>
+      <b-row v-if="cartItems.products">
         <b-col class="mb-3">
           <b-list-group-item disabled
             >Product : {{ product_item.productId }}</b-list-group-item

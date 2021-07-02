@@ -52,9 +52,9 @@ export default {
       const { email, password } = this.formLogin;
       this.login({ email, password });
       // this.$router.push('/')
-     setTimeout(() => {
-        this.$router.go();
-     }, 500)
+    //  setTimeout(() => {
+    //     this.$router.go();
+    //  }, 500)
       // console.log(email, password);
     },
   },

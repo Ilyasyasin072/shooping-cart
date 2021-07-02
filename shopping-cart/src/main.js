@@ -29,6 +29,7 @@ Vue.use(VueJwtDecode)
 Vue.use(VueSimpleAlert);
 Vue.use(VModal, { dialog: true, scrollable: true })
 Vue.use(ReadMore);
+Vue.use(axios)
 
 Vue.config.productionTip = false
 

@@ -2,7 +2,8 @@ import productApi_ from '../../../api/product/index.js';
 
 const state = {
     product: [],
-    product_detail: []
+    product_detail: [],
+    product_search: [],
 }
 
 const getters = {
@@ -10,7 +11,9 @@ const getters = {
     productGetId: (state) => (id) => {
         return state.product.find(product => product._id === id)
     },
-    productDetail: (state) => state.product_detail,
+    productDetail: (state) => state.product_detail,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+    productSearch: (state) => state.product_search
 }
 
 
@@ -25,6 +28,12 @@ const actions = {
         productApi_.productDetailApi(id, (res) => {
          commit('PRODUCT_GET_DETAIL', res)
         })
+    },
+
+    getProductSearch({ commit}, query) {
+        productApi_.productSearchApi(query, (res) => {
+            commit('PRODUCT_SEARCH', res)
+        })
     }
 }
 
@@ -35,6 +44,10 @@ const mutations = {
 
     PRODUCT_GET_DETAIL(state, payload) {
         state.product_detail = payload
+    },
+
+    PRODUCT_SEARCH(state, payload) {
+        state.product_search = payload
     }
 }
 

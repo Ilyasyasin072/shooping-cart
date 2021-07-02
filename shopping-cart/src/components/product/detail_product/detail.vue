@@ -296,7 +296,7 @@ export default {
       },
       setting: {
         dots: true,
-        arrows: "true",
+        // arrows: "true",
         focusOnSelect: true,
         infinite: true,
         speed: 500,
@@ -334,7 +334,7 @@ export default {
   },
   methods: {
     ...mapActions(["getProductDetail", "addCart", "getProduct"]),
-    getIdProduct: function () {
+    getIdProduct: function() {
       this.id = this.$route.query._id;
       const data = this.id;
       this.getProductDetail(data);
@@ -344,7 +344,7 @@ export default {
       this.getProduct();
     },
 
-    addCartItem: function (productId, price) {
+    addCartItem: function(productId, price) {
       this.userLogin = authHeader().Authorization;
       if (this.userLogin) {
         const { qty, quantity } = this.cart_item;
@@ -365,7 +365,7 @@ export default {
         this.$router.push("/login");
       }
     },
-    formatCurrancy: function (value) {
+    formatCurrancy: function(value) {
       let val = (value / 1).toFixed(2).replace("&#39;.&#39;, &#39;,&#39;");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },

@@ -3,7 +3,10 @@ import axios from 'axios';
 import { baseUri } from '../../config/http-common';
 
 const api = axios.create({
-    baseURL: baseUri.uri
+    baseURL: baseUri.uri,
+    headers: {
+        'Content-Type': 'application/json'
+      }
 })
 
 function getProductApi(cb) {
@@ -18,8 +21,19 @@ function getProductDetail(id, cb) {
     })
 }
 
+function getSearchProduct(query, cb) {
+    api.get('/product/inventory/data', {
+        params: {
+            name: query
+        }
+    }).then((res) => {
+        cb(res.data)
+    })
+}
+
 
 export default  {
     productApi : (cb) => getProductApi(cb),
-    productDetailApi : (id, cb) => getProductDetail(id,cb)
+    productDetailApi : (id, cb) => getProductDetail(id,cb),
+    productSearchApi : (query, cb) => getSearchProduct(query, cb)
 }

@@ -13,7 +13,7 @@
               <!-- <div class="card-title">
                     <h5 class="p-3">Sending</h5>
                   </div> -->
-              <div class="card-body">
+              <div class="card-body" v-if="product_detail.product_inventories">
                 <div class="row">
                   <div class="col-3">
                     <img

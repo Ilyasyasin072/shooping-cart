@@ -5,9 +5,9 @@
         <h5>Shopping Cart</h5>
       </div>
     </form>
-    <div v-if="cartItems && cartItems.products.length">
+    <div v-if="cartItems && cartItems.products">
       <div
-        class="row mb-5"
+        class="row mb-5 mt-5"
         v-for="product_item in cartItems.products"
         :key="product_item._id"
       >
@@ -123,8 +123,8 @@
         </button>
       </div>
     </div>
-    <div v-else>
-      <div class="row">
+    <!-- <div> -->
+      <div class="row mt-5" v-if="cartItems.products<1">
         <div class="col">
           <div class="card">
             <div class="card-body">
@@ -135,7 +135,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 
     <modal
@@ -229,7 +229,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" v-if="user && user.address">
           <div class="col">
             <div v-for="user_detail in user.address" :key="user_detail._id">
               <div class="form-group">

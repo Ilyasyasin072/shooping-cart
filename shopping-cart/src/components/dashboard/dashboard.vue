@@ -1,17 +1,18 @@
 <template>
-  <div class="container mt-5 pt-5">
+  <div>
     <!-- <banner-list-view></banner-list-view> -->
+    <div class="container mt-5 pt-5">
     <div class="hero"></div>
     <div class="mt-2">
       <product-list-view></product-list-view>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
 import ProductList from "../product/product";
 // import BannerList from "../banner/banner";
-
 export default {
   name: "DashboardList",
   components: {
@@ -20,7 +21,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .hero {

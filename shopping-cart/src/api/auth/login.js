@@ -6,7 +6,10 @@ import { baseUri } from '../../config/http-common'
 import { setUserSession } from '../../utils/common';
 
 const api = axios.create({
-    baseURL: baseUri.uri
+    baseURL: baseUri.uri,
+    headers: {
+        'Content-Type': 'application/json'
+      }
 })
 
 

@@ -34,6 +34,9 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto" v-if="userLogin">
+          <li class="nav-item">
+             <router-link to="/cart/user" class="nav-link"><i class="fas fa-shopping-cart">&nbsp;<span class="badge bg-success" v-if="cartItems.products">{{ cartItems.products.length }}</span></i></router-link>
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -79,6 +82,7 @@ export default {
   data() {
     return {
       userLogin: null,
+      count: 0,
     };
   },
   mounted() {
@@ -99,6 +103,6 @@ export default {
     cart() {
       this.$router.push({ path: "/cart/user" });
     },
-  },
+  }
 };
 </script>

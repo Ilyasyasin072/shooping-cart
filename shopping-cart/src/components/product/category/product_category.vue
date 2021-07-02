@@ -4,57 +4,51 @@
       <h3>Produk Kategori</h3>
       <hr />
       <div class="row">
-        <div
-          class="col-md-3 col-6 mt-3"
-          v-for="img_item in img"
-          :key="img_item.id"
-        >
-          <div class="card mb-3 h-100" style="max-width: 540px">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img
-                  :src="img_item.url"
-                  class="img-fluid w-100 rounded-2"
-                  alt=""
-                  type="button"
-                />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title ms-2">
+        <VueSlickCarousel v-bind="setting">
+          <div
+            class="col-lg-3 col-md-3 col-12 mt-3"
+            v-for="img_item in img"
+            :key="img_item.id"
+          >
+            <div class="mb h-100" style="max-width: 540px">
+              <div class="row g-0">
+                <div class="col23">
+                  <img
+                    :src="img_item.url"
+                    class="img-fluid w-100 rounded-2"
+                    alt=""
+                    type="button"
+                  />
+                  <p class="card-title">
                     <span class="fw-bold">{{ img_item.title_first }}</span
-                    ><br /><span class="text-muted">{{
+                    >&nbsp;<span class="text-muted">{{
                       img_item.title_second
                     }}</span>
-                  </h5>
-                  <p class="text-muted">1,404 produk</p>
-                  <!-- <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
                   </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p> -->
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </VueSlickCarousel>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   name: "CategoryProduct",
+  components: {
+    VueSlickCarousel,
+  },
   data() {
     return {
       img: [
         {
           id: 1,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+          url:
+            "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Pria",
 
@@ -62,53 +56,43 @@ export default {
         },
         {
           id: 2,
-          url: "https://images.unsplash.com/photo-1600609842388-3e2ed2a1454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+          url:
+            "https://images.unsplash.com/photo-1600609842388-3e2ed2a1454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Pria",
         },
         {
           id: 3,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+          url:
+            "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Pria",
         },
         {
           id: 4,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+          url:
+            "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
           title_first: "Kaos",
           title_second: "Pria",
-        },
-        {
-          id: 5,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-          title_first: "Kaos",
-          title_second: "Pria",
-        },
-        {
-          id: 7,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-          title_first: "Hijab",
-          title_second: "Wanita",
-        },
-        {
-          id: 8,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-          title_first: "Kaos",
-          title_second: "Baby",
-        },
-        {
-          id: 9,
-          url: "https://images.unsplash.com/photo-1621951753015-740c699ab970?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-          title_first: "Kaos",
-          title_second: "Wanita",
         },
       ],
+      setting: {
+        dots: true,
+        // arrows: "true",
+        autoplay: true,
+        focusOnSelect: true,
+        infinite: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        touchThreshold: 5,
+      },
     };
   },
 };
 </script>
-
-
 
 <style scoped>
 .card-category {
