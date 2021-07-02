@@ -1,5 +1,6 @@
 const ProductCategory = require('../models/product_category');
 const ApiResponser = require('../traits/ApiResponse');
+const mongoose = require('mongoose');
 
 const index = async (req, res) => {
 
@@ -38,8 +39,56 @@ const store = async (req, res) => {
     }
 }
 
+const show = async (req, res) => {
+    const ObjectId = mongoose.Types.ObjectId;
+    let aggregateQuery = ProductCategory.aggregate([
+        {
+            "$match": {
+                _id : ObjectId(req.params.id)
+                // $search: {
+                //     'index': 'search_product',
+                //     'text': {
+                //         'query': "{ name : " + search.name + "}",
+                //         'path': {
+                //             'wildcard': '*'
+                //         }
+                //     }
+                // },
+            },
+        },
+        {
+            $lookup: {
+                from: 'products',
+                localField: '_id',
+                foreignField: 'category_id', as: 'products'
+            },
+        },
+      
+        {
+            $lookup: {
+                from: 'product_inventories',
+                localField: 'products.inventory_id',
+                foreignField: '_id', as: 'product_inventories'
+            },
+        },
+        //   {
+
+        //     $unwind: {
+        //         path : "$product_inventories",
+        //         preserveNullAndEmptyArrays: true
+        //     }
+            
+        // },
+    ])
+
+    aggregateQuery.exec(function (err, result) {
+        res.json(result);
+    })
+}
+
 
 module.exports = {
     index,
-    store
+    store,
+    show
 }

@@ -1,6 +1,5 @@
 const ProductInventory = require('../models/product_inventory');
 const ApiResponser = require('../traits/ApiResponse');
-
 const index = async (req, res) => {
 
     try {
@@ -46,8 +45,92 @@ const store = async (req, res) => {
     }
 }
 
+function isEmptyObject(obj) {
+    return !Object.keys(obj).length;
+  }
+const search = async (req, res) => {
+    const search = req.query;
+
+//    try {
+   if(isEmptyObject(search)) {
+   
+    let aggregateQuery = ProductInventory.aggregate([
+        {
+            $lookup: {
+                from: 'products',
+                localField: '_id',
+                foreignField: 'inventory_id', as: 'products'
+            },
+        },
+    ])
+
+    aggregateQuery.exec(function (err, result) {
+        res.json(result);
+    })
+   } else {
+        let aggregateQuery = ProductInventory.aggregate([
+        {
+            // "$match": {
+                $search: {
+                    'index': 'search_product',
+                    'text': {
+                        'query': "{ name : " + search.name + "}",
+                        'path': {
+                            'wildcard': '*'
+                        }
+                    }
+                },
+            // },
+        },
+        {
+            $lookup: {
+                from: 'products',
+                localField: '_id',
+                foreignField: 'inventory_id', as: 'products'
+            },
+        },
+        {
+    
+            $unwind: "$products"
+
+        },
+    ])
+
+    aggregateQuery.exec(function (err, result) {
+        res.json(result);
+    })
+   
+   }
+    // ProductInventory.aggregate([{
+    //     $search: {
+    //         'index': 'search_product',
+    //         'text': {
+    //             'query': "{ name : " + search.name + "}",
+    //             'path': {
+    //                 'wildcard': '*'
+    //             }
+    //         }
+    //     },
+    // }], function (err, data) {
+    //     if (err) {
+
+    //         res.status(400).json({ err });
+    //         console.log(err);
+
+    //     } else {
+
+    //         res.status(200).json(data)
+    //     }
+    // })
+//    } catch (error) {
+//        res.json(error.message)
+//    }
+
+}
+
 
 module.exports = {
     index,
-    store
+    store,
+    search
 }

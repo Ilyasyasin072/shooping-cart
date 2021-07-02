@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/*.js --timeout 10000 --exit",
     "start": "nodemon server.js"
   },
   "author": "",
@@ -23,5 +23,10 @@
     "mongoose": "^5.12.12",
     "mongoose-hidden": "^1.9.1",
     "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.1"
   }
 }

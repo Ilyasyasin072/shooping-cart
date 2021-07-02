@@ -15,6 +15,7 @@ const userPaymentController = require('../controllers/userPaymentController');
 const authController = require('../controllers/authController');
 const phoneController = require('../controllers/phoneController')
 const orderController = require('../controllers/orderController')
+
 router.group('/v1', (router) => {
 
     router.group('/auth', (router) => {
@@ -26,6 +27,8 @@ router.group('/v1', (router) => {
     router.group('/user', (router) => {
 
         router.get('/', userController.index)
+        router.get('/all', userController.getAll)
+        
 
         router.group('/address', (router) => {
             router.get('/', userAddressController.index)
@@ -61,11 +64,13 @@ router.group('/v1', (router) => {
         router.group('/category', (router) => {
             router.get('/', productCategory.index);
             router.post('/create', productCategory.store)
+            router.get('/show/:id', productCategory.show);
         })
 
         router.group('/inventory', (router) => {
             router.get('/', productInventory.index)
             router.post('/create', productInventory.store)
+            router.get('/data', productInventory.search)
         })
 
         router.group('/discount', (router) => {

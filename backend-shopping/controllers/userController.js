@@ -98,15 +98,24 @@ const index = async (req, res) => {
 
             // res.json(data.data)
         } catch (error) {
-            res.json(error.message)
+            res.status(500).json(error.message)
         }
     } else {
-        res.json({
+        res.status(500).json({
             status: 'invalid credentials'
         })
     }
 }
 
+const getAll = async (req, res) => {
+    const user = await User.find({})
+
+    res.json({
+         user
+    })
+}
+
 module.exports = {
-    index
+    index,
+    getAll
 }
