@@ -8,6 +8,7 @@ import User from '../components/user/index.vue'
 import Cart from '../components/cart/cart.vue'
 import Order from '../components/order/order.vue'
 import Category from '../components/product/category/detail/detail_category.vue'
+import SendingOrder from '../components/cart/sending/sending_order.vue'
 const router = new VueRouter({
   mode: 'history',
   // routes: routes,
@@ -81,6 +82,11 @@ const router = new VueRouter({
       path: '/',
       component: Dashboard,
 
+    },
+    {
+      name: "sendingOrder",
+      path: "/sending/customer",
+      component: SendingOrder,
     },
     { path: '*', redirect: '/' }
   ]

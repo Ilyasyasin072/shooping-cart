@@ -2,139 +2,196 @@
   <div class="container mt-5 pt-5">
     <form class="form-inline">
       <div class="form-group mb-2">
-        <h5>Shopping Cart</h5>
+        <h5 class="mt-3">Shopping Cart</h5>
       </div>
     </form>
     <div v-if="cartItems && cartItems.products">
-      <div
-        class="row mb-5 mt-5"
-        v-for="product_item in cartItems.products"
-        :key="product_item._id"
-      >
-        <div class="col">
-          <div v-for="product_ in product" :key="product_._id">
-            <div v-if="product_._id == product_item.productId">
-              <div class="row">
-                 <div class="row col-lg-8 col-md-8 mx-auto">
-                    <input   type="checkbox"
-                    class="form-check-input"
-                    :value="product_item._id"
-                    @change="changeAge(product_item, $event)">
-                  <ul class="list-group">
-                    <!-- list group item-->
-                    <li class="list-group-item">
-                      <!-- Custom content-->
-                      <div
-                        class="media align-items-lg-center flex-column flex-lg-row p-3"
-                      >
-                        <div class="media-body order-2 order-lg-1">
-                          <h5 class="mt-0 font-weight-bold mb-2">
-                            Awesome product
-                          </h5>
-                          <p class="font-italic text-muted mb-0 small">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Suscipit fuga autem maiores necessitatibus.
-                          </p>
-                          <div
-                            class="d-flex align-items-center justify-content-between mt-1"
-                          >
-                            <h6 class="font-weight-bold my-2">
-                              $120.00
-                            </h6>
-                            <ul class="list-inline small">
-                              <li class="list-inline-item m-0">
-                                <i class="fa fa-star text-success"></i>
-                              </li>
-                              <li class="list-inline-item m-0">
-                                <i class="fa fa-star text-success"></i>
-                              </li>
-                              <li class="list-inline-item m-0">
-                                <i class="fa fa-star text-success"></i>
-                              </li>
-                              <li class="list-inline-item m-0">
-                                <i class="fa fa-star text-success"></i>
-                              </li>
-                              <li class="list-inline-item m-0">
-                                <i class="fa fa-star-o text-gray"></i>
-                              </li>
-                            </ul>
+      <div class="row">
+        <div
+          class="row mb-5 mt-5"
+          v-for="product_item in cartItems.products"
+          :key="product_item._id"
+        >
+          <div class="col-lg-12">
+            <div v-for="product_ in product" :key="product_._id">
+              <div v-if="product_._id == product_item.productId">
+                <div class="row">
+                  <div class="row col-lg-8 col-md-8 mx-auto">
+                    <input
+                      type="checkbox"
+                      class="form-check-input mt-1 mb-1"
+                      :value="product_item._id"
+                      @change="changeAge(product_item, $event)"
+                    />&nbsp; Check
+                    <ul class="list-group">
+                      <!-- list group item-->
+                      <li class="list-group-item">
+                        <!-- Custom content-->
+                        <div
+                          class="media align-items-lg-center flex-column flex-lg-row p-3"
+                        >
+                          <div class="media-body order-2 order-lg-1">
+                            <h5 class="mt-0 font-weight-bold mb-2">
+                              Awesome product
+                            </h5>
+                            <p class="font-italic text-muted mb-0 small">
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit. Suscipit fuga autem maiores
+                              necessitatibus.
+                            </p>
+                            <div
+                              class="d-flex align-items-center justify-content-between mt-1"
+                            >
+                              <h6 class="font-weight-bold my-2">
+                                $120.00
+                              </h6>
+                              <ul class="list-inline small">
+                                <li class="list-inline-item m-0">
+                                  <i class="fa fa-star text-success"></i>
+                                </li>
+                                <li class="list-inline-item m-0">
+                                  <i class="fa fa-star text-success"></i>
+                                </li>
+                                <li class="list-inline-item m-0">
+                                  <i class="fa fa-star text-success"></i>
+                                </li>
+                                <li class="list-inline-item m-0">
+                                  <i class="fa fa-star text-success"></i>
+                                </li>
+                                <li class="list-inline-item m-0">
+                                  <i class="fa fa-star-o text-gray"></i>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
+                          <img
+                            :src="product_.product_inventories.image_product"
+                            width="200"
+                            class="ml-lg-5 order-1 order-lg-2"
+                            alt="Generic placeholder image"
+                          />
                         </div>
-                        <img
-                          :src="product_.product_inventories.image_product"
-                          width="200"
-                          class="ml-lg-5 order-1 order-lg-2"
-                          alt="Generic placeholder image"
-                        />
-                      </div>
+                        <!-- End -->
+                      </li>
                       <!-- End -->
-                    </li>
-                    <!-- End -->
-                  </ul>
-                </div>
-                <div class="col col-lg-4">
-                  <ul class="list-group list-group-flush">
-                    <div class="text-end">
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" 
-                        @click="remove(product_item._id)"></button>
-                     
-                      &nbsp;
-                    </div>
-                    <li class="list-group-item">
-                      <h1>{{ product_.product_inventories.name }}</h1>
-                    </li>
-                    <li class="list-group-item">
-                      <h5>
-                        Category
-                        <small class="text-muted">{{
-                          product_.product_categories.desc
-                        }}</small>
-                      </h5>
-                    </li>
-                    <li class="list-group-item">
-                      <h5>
-                        Stock :
-                        <span class="badge bg-success">{{
-                          product_.product_inventories.quantity
-                        }}</span>
-                      </h5>
-                    </li>
-                    <li class="list-group-item">
-                      Quantity :
-                      <button class="btn btn-xs btn-default">-</button>
-                      {{ product_item.quantity }}
-                      <button class="btn btn-xs btn-default">+</button>
-                    </li>
-                    <li class="list-group-item">
-                      Harga: Rp.{{ product_item.price }}
-                    </li>
-                    <!-- {{ product_ }} -->
-                  </ul>
+                    </ul>
+                  </div>
+                  <div class="col col-lg-4">
+                    <ul class="list-group list-group-flush">
+                      <div class="text-end">
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          aria-label="Close"
+                          @click="remove(product_item._id)"
+                        ></button>
+
+                        &nbsp;
+                      </div>
+                      <li class="list-group-item">
+                        <h1>{{ product_.product_inventories.name }}</h1>
+                      </li>
+                      <li class="list-group-item">
+                        <h5>
+                          Category
+                          <small class="text-muted">{{
+                            product_.product_categories.desc
+                          }}</small>
+                        </h5>
+                      </li>
+                      <li class="list-group-item">
+                        <h5>
+                          Stock :
+                          <span class="badge bg-success">{{
+                            product_.product_inventories.quantity
+                          }}</span>
+                        </h5>
+                      </li>
+                      <li class="list-group-item">
+                        Quantity :
+                        <button
+                          class="btn btn-xs btn-default"
+                          v-if="count > 0"
+                          @click="decrement"
+                        >
+                          -
+                        </button>
+                        {{ count }}
+                        <button
+                          class="btn btn-xs btn-default"
+                          @click="increment"
+                        >
+                          +
+                        </button>
+                      </li>
+                      <li class="list-group-item">
+                        Harga: Rp.{{ product_item.price }}
+                      </li>
+                      <!-- {{ product_ }} -->
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-group text-end" v-if="checkout_data.length">
-        <button class="btn btn-sm btn-info text-light" @click="checkout()">
-          Checkout
-        </button>
+        <div
+          class="col mb-5 d-sm-flex justify-content-end"
+          v-if="checkout_data.length"
+          @click="checkout()"
+        >
+          <ul class="">
+            <li
+              class="p-3 list-group-item d-flex justify-content-between align-items-center"
+            >
+              <h5 class="mt-0 font-weight-bold mb-2 ">
+                Awesome product Lorem ipsum dolor
+              </h5>
+              <span class="justify-content-end"> RP. 199.000</span>
+            </li>
+            <hr />
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Est. Total
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-centerd"
+            >
+              With Delivery
+              <span> RP. 199.000</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Morbi leo risus
+              <span> RP. 199.000</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <button class="btn btn-sm btn-success" style="width: 100%">
+                Pay
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <!-- <div> -->
-      <div class="row mt-5" v-if="cartItems.products<1">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="text-center">Upps Keranjang Anda Kosong</h1>
-              <button @click="dashboard_" class="btn btn-dark text-light">
-                Belaja ..
-              </button>
-            </div>
+    <div class="row mt-5" v-if="cartItems.products < 1">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">Upps Keranjang Anda Kosong</h1>
+            <button @click="dashboard_" class="btn btn-dark text-light">
+              Belaja ..
+            </button>
           </div>
         </div>
+      </div>
       <!-- </div> -->
     </div>
 
@@ -328,6 +385,7 @@ export default {
       cartItems: "cartItems",
       product: "productGet",
       user: "getUserProfile",
+      count: "countCart",
     }),
   },
   methods: {
@@ -337,6 +395,8 @@ export default {
       "addCheckout",
       "getProduct",
       "getUserProfileAction",
+      "increment",
+      "decrement",
     ]),
     cart: function() {
       const token = authHeader().Authorization;
@@ -346,7 +406,15 @@ export default {
       this.getProduct();
     },
     remove: function(productId) {
+     const arr = this.checkout_data
+     var result = arr.map(person => ({ _id: person._id, }));
+     for(var i=0; i < result.length; i++) {
+      //  console.log(result[i]._id)
+        arr.splice(arr.findIndex(el => el.id === result[i]._id), 1)
+     }
+      // console.log(productId)
       this.removeCart({ productId: productId });
+      // console.log(arr)
     },
     checkout: function() {
       this.$modal.show("order-data");
@@ -368,8 +436,8 @@ export default {
       }, 500);
     },
     changeAge: function(item, event) {
+      console.log(item);
       if (event.target.checked == false) {
-        console.log(this);
         // var tokenToRemove;
         const check = this.checkout_data;
         check.forEach((item, index) => {

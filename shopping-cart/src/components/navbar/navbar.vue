@@ -6,7 +6,7 @@
       </div>
     </div>
     <NavBarItem />
-    <div class="container mt-2 mb-3">
+    <div class="container mt-2">
       <div class="navbar-brand fw-bold">
         <div class="form-group">
           <b-row class="">
@@ -17,9 +17,8 @@
                   v-model="query"
                   type="text"
                   placeholder="Search .."
-                /><button class="btn-sm" @click="showCategory">
-                  <i class="fa fa-search"></i>
-                </button>
+                  @click="showCategory"
+                />
               </div>
             </b-col>
             <div class="results" v-if="listOpen">
@@ -31,7 +30,7 @@
                 >
                   <img :src="item_data.image_product" />
                   <span class="fw-100">{{ item_data.name }}</span>
-                </li>
+                </li>  
               </ul>
             </div>
             <div class="results" v-if="listComponent">
@@ -112,9 +111,11 @@ export default {
         // this.product_search;
         this.listOpen = true;
         this.isShow = true;
+        this.listComponent = false;
       } else {
         this.product_data = [];
         this.listOpen = false;
+        this.listComponent = true;
       }
     },
     onClick(product_) {
@@ -163,7 +164,7 @@ export default {
   /* font-size: 17px; */
   /* border: 1px solid; */
   float: left;
-  width: 80%;
+  width: 100%;
   /* background: #f1f1f1; */
 }
 

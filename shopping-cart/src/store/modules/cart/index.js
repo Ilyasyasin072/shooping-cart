@@ -2,11 +2,13 @@ import cartApi from '../../../api/cart/index'
 
 const state = {
     cartItems:[],
-    checkout: []
+    checkout: [],
+    count: 1,
 }
 
 const getters ={
     cartItems : (state) => state.cartItems,
+    countCart: (state) => state.count
     // cartTotal: state => {
     //     // return state.cartItems.reduce((acc, cartItem) => {
     //     //   return (cartItem.quantity * cartItem.price) + acc;
@@ -43,8 +45,10 @@ const actions = {
         cartApi.removeCartApi(cartItems, (res) => {
             commit('GET_CART', res)
         })
-    }
+    },
 
+    increment : ({commit }) => commit('INCREMENT'),
+    decrement: ({ commit }) => commit('DECREMENT'),
 }
 
 const mutations = {
@@ -57,6 +61,12 @@ const mutations = {
         state.checkout = payload
     },
 
+    INCREMENT(state){
+        state.count++
+    },
+    DECREMENT(state) {
+        state.count--
+    }
 }
 
 
